@@ -1,0 +1,38 @@
+<!--
+  HAND-TRACED from note-previews/notes-p-06.png ("Water striders (pond skaters) use surface
+  tension to walk on water with their six legs" — hand-drawn strider with jointed legs
+  resting in small dimples on a wavy water-surface line).
+  This is the resolution-scene hero diagram (mystery payoff).
+  Palette: water #87ceeb, ink #2c3e50.
+-->
+<svg id="strider_1" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+  <path id="strider_1_surface"
+        d="M15,128 Q45,118 75,127 T140,126 Q170,116 200,127 T265,126 Q295,116 325,127 T390,126 Q420,117 450,127 T485,126"
+        stroke="#87ceeb" stroke-width="3" fill="none" stroke-linecap="round" />
+
+  <g id="strider_1_bug" stroke="#2c3e50" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- body: two small wobbly blobs (thorax + abdomen) -->
+    <path d="M232,90 C238,84 262,84 268,91 C273,97 271,104 262,107 C250,110 236,108 231,101 C228,97 228,94 232,90 Z"
+          fill="#2c3e50" fill-opacity="0.85" stroke="none" />
+    <path d="M225,96 C220,94 208,95 205,99 C203,102 206,105 212,105 C218,105 224,102 225,96 Z"
+          fill="#2c3e50" fill-opacity="0.85" stroke="none" />
+
+    <!-- 3 legs left, 3 legs right, each with a bend, feet resting in surface dimples -->
+    <path d="M234,98 L182,112 L128,124" />
+    <circle cx="128" cy="124" r="3" fill="none" />
+    <path d="M240,103 L205,120 L178,131" />
+    <circle cx="178" cy="131" r="3" fill="none" />
+    <path d="M248,106 L232,120 L220,133" />
+    <circle cx="220" cy="133" r="3" fill="none" />
+
+    <path d="M262,98 L308,112 L358,124" />
+    <circle cx="358" cy="124" r="3" fill="none" />
+    <path d="M258,103 L292,120 L318,131" />
+    <circle cx="318" cy="131" r="3" fill="none" />
+    <path d="M252,106 L268,120 L280,133" />
+    <circle cx="280" cy="133" r="3" fill="none" />
+
+    <!-- antennae -->
+    <path d="M210,96 Q198,88 190,80" stroke-width="1.5" />
+  </g>
+</svg>

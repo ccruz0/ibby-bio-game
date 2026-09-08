@@ -1,0 +1,35 @@
+<!--
+  HAND-TRACED from note-previews/biology-notes-02.png (Biology Notes.pdf, "Water a1.1" page,
+  "Hydrogen vs. covalent bonds" section — O atom with 2 H atoms overlapping it Mickey-Mouse
+  style, covalent bond diagram).
+  Palette: oxygen pink #e84393, hydrogen yellow #f4d03f, ink #2c3e50.
+  Group ids kept stable — GSAP timelines in src/animations/moleculeTimeline.ts target them.
+-->
+<svg id="molecule_1" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="molecule_blobA" d="M53,-3 C60,15 30,50 2,51 C-25,52 -50,25 -49,4 C-48,-18 -20,-53 -3,-52 C15,-51 48,-25 53,-3 Z" />
+    <path id="molecule_blobB" d="M50,4 C55,25 22,53 -4,50 C-28,47 -52,20 -50,-5 C-48,-28 -22,-52 3,-50 C26,-48 48,-18 50,4 Z" />
+    <path id="molecule_blobC" d="M48,-8 C58,10 35,48 8,53 C-18,58 -50,30 -51,3 C-52,-22 -28,-50 -2,-51 C22,-52 42,-28 48,-8 Z" />
+  </defs>
+  <g id="molecule_1_bonds" stroke="#2c3e50" stroke-width="3" fill="none" stroke-linecap="round">
+    <line id="bond_o_h1" x1="185" y1="175" x2="148" y2="202" />
+    <line id="bond_o_h2" x1="215" y1="175" x2="252" y2="202" />
+  </g>
+  <g id="molecule_1_oxygen">
+    <use href="#molecule_blobA" transform="translate(200,150) scale(1.35)" fill="#e84393" fill-opacity="0.4" stroke="#e84393" stroke-width="3" vector-effect="non-scaling-stroke" />
+    <text x="200" y="158" text-anchor="middle" font-family="Caveat, sans-serif" font-size="38" fill="#2c3e50">O</text>
+  </g>
+  <g id="molecule_1_hydrogen_1">
+    <use href="#molecule_blobB" transform="translate(130,220) scale(0.72)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="130" y="227" text-anchor="middle" font-family="Caveat, sans-serif" font-size="26" fill="#2c3e50">H</text>
+  </g>
+  <g id="molecule_1_hydrogen_2">
+    <use href="#molecule_blobC" transform="translate(270,220) scale(0.72)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="270" y="227" text-anchor="middle" font-family="Caveat, sans-serif" font-size="26" fill="#2c3e50">H</text>
+  </g>
+  <g id="molecule_1_dropzones" opacity="0">
+    <circle id="dropzone_o" cx="200" cy="150" r="55" />
+    <circle id="dropzone_h1" cx="130" cy="220" r="30" />
+    <circle id="dropzone_h2" cx="270" cy="220" r="30" />
+  </g>
+</svg>

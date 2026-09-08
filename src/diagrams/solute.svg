@@ -1,0 +1,47 @@
+<!--
+  HAND-TRACED from note-previews/notes-p-08.png ("Solvent properties of water" — solvent
+  beaker -> solutes zoom circle -> solution beaker three-part diagram). Supporting diagram,
+  out-of-scope for MVP's 3 battles but kept as a stub for a future episode wedge.
+  Palette: water #87ceeb, ink #2c3e50.
+-->
+<svg id="solute_1" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+  <g id="solute_1_beaker" stroke="#2c3e50" stroke-width="2" fill="none" stroke-linecap="round">
+    <!-- solvent beaker (wobbly rect) -->
+    <path d="M28,38 C27,38 27,140 28,141 L110,141 C111,140 111,38 110,38" />
+    <rect x="28" y="86" width="82" height="55" fill="#87ceeb" fill-opacity="0.45" stroke="none" />
+    <g stroke="#87ceeb" stroke-width="1.5" opacity="0.7">
+      <line x1="38" y1="130" x2="50" y2="96" />
+      <line x1="58" y1="132" x2="72" y2="94" />
+      <line x1="80" y1="130" x2="94" y2="98" />
+    </g>
+
+    <!-- solutes zoom circle -->
+    <circle cx="200" cy="88" r="46" />
+    <line x1="112" y1="110" x2="160" y2="98" stroke-dasharray="4 4" />
+
+    <!-- solution beaker -->
+    <path d="M290,38 C289,38 289,140 290,141 L372,141 C373,140 373,38 372,38" />
+    <rect x="290" y="86" width="82" height="55" fill="#87ceeb" fill-opacity="0.45" stroke="none" />
+    <line x1="246" y1="98" x2="288" y2="112" stroke-dasharray="4 4" />
+  </g>
+
+  <g id="solute_1_particles" fill="#2c3e50">
+    <circle cx="182" cy="80" r="4" />
+    <circle cx="205" cy="70" r="4" />
+    <circle cx="222" cy="92" r="4" />
+    <circle cx="190" cy="102" r="4" />
+    <circle cx="214" cy="108" r="4" />
+
+    <circle cx="308" cy="105" r="3.5" />
+    <circle cx="326" cy="122" r="3.5" />
+    <circle cx="344" cy="102" r="3.5" />
+    <circle cx="357" cy="126" r="3.5" />
+    <circle cx="318" cy="128" r="3.5" />
+  </g>
+
+  <g font-family="Caveat, sans-serif" font-size="16" fill="#2c3e50" text-anchor="middle">
+    <text x="69" y="156">solvent</text>
+    <text x="200" y="152">solutes</text>
+    <text x="331" y="156">solution</text>
+  </g>
+</svg>

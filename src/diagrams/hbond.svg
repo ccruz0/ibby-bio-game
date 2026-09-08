@@ -1,0 +1,53 @@
+<!--
+  HAND-TRACED from note-previews/biology-notes-03.png ("The attraction between two water
+  molecules is called a hydrogen bond" — 3-molecule dashed hydrogen-bond diagram with
+  delta-charge labels) and note-previews/notes-p-06.png (h-bond chain used for the strider
+  scene).
+  Palette: oxygen pink #e84393, hydrogen yellow #f4d03f, h-bond dashed ink #2c3e50.
+-->
+<svg id="hbond_1" viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="hbond_blobA" d="M53,-3 C60,15 30,50 2,51 C-25,52 -50,25 -49,4 C-48,-18 -20,-53 -3,-52 C15,-51 48,-25 53,-3 Z" />
+    <path id="hbond_blobB" d="M50,4 C55,25 22,53 -4,50 C-28,47 -52,20 -50,-5 C-48,-28 -22,-52 3,-50 C26,-48 48,-18 50,4 Z" />
+    <path id="hbond_blobC" d="M48,-8 C58,10 35,48 8,53 C-18,58 -50,30 -51,3 C-52,-22 -28,-50 -2,-51 C22,-52 42,-28 48,-8 Z" />
+  </defs>
+
+  <g id="hbond_1_dashes" stroke="#2c3e50" stroke-width="2" stroke-dasharray="6 6" fill="none">
+    <line id="hbond_a" x1="122" y1="82" x2="222" y2="140" />
+    <line id="hbond_b" x1="278" y1="140" x2="378" y2="82" />
+  </g>
+
+  <g font-family="Caveat, sans-serif" font-size="15" fill="#2c3e50">
+    <text x="100" y="76">δ+</text>
+    <text x="235" y="130">δ-</text>
+    <text x="265" y="130">δ+</text>
+    <text x="392" y="76">δ-</text>
+  </g>
+
+  <g id="hbond_1_molecule_a">
+    <use href="#hbond_blobA" transform="translate(90,60) scale(0.68)" fill="#e84393" fill-opacity="0.38" stroke="#e84393" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="90" y="67" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22" fill="#2c3e50">O</text>
+    <use href="#hbond_blobB" transform="translate(55,90) scale(0.32)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="55" y="94" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50">H</text>
+    <use href="#hbond_blobC" transform="translate(115,95) scale(0.32)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="115" y="99" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50">H</text>
+  </g>
+
+  <g id="hbond_1_molecule_b">
+    <use href="#hbond_blobB" transform="translate(250,150) scale(0.68)" fill="#e84393" fill-opacity="0.38" stroke="#e84393" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="250" y="157" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22" fill="#2c3e50">O</text>
+    <use href="#hbond_blobC" transform="translate(215,180) scale(0.32)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="215" y="184" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50">H</text>
+    <use href="#hbond_blobA" transform="translate(280,180) scale(0.32)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="280" y="184" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50">H</text>
+  </g>
+
+  <g id="hbond_1_molecule_c">
+    <use href="#hbond_blobC" transform="translate(410,60) scale(0.68)" fill="#e84393" fill-opacity="0.38" stroke="#e84393" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="410" y="67" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22" fill="#2c3e50">O</text>
+    <use href="#hbond_blobA" transform="translate(375,90) scale(0.32)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="375" y="94" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50">H</text>
+    <use href="#hbond_blobB" transform="translate(440,95) scale(0.32)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="440" y="99" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50">H</text>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<!--
+  PLACEHOLDER — replace with hand-trace from Figma.
+  Source: note-previews/notes-p-05.png ("1 bond = weak" / "many bonds = strong" chain diagram,
+  "Use of water surface as habitats" surface-tension row).
+-->
+<svg id="cohesion_1" viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg">
+  <g id="cohesion_1_chain" stroke="#2c3e50" stroke-width="2" stroke-dasharray="5 5" fill="none">
+    <line x1="60" y1="80" x2="150" y2="80" />
+    <line x1="150" y1="80" x2="240" y2="80" />
+    <line x1="240" y1="80" x2="330" y2="80" />
+    <line x1="330" y1="80" x2="420" y2="80" />
+  </g>
+  <g id="cohesion_1_molecules" fill="#87ceeb" fill-opacity="0.5" stroke="#e84393" stroke-width="2">
+    <circle cx="60" cy="80" r="24" />
+    <circle cx="150" cy="80" r="24" />
+    <circle cx="240" cy="80" r="24" />
+    <circle cx="330" cy="80" r="24" />
+    <circle cx="420" cy="80" r="24" />
+  </g>
+</svg>

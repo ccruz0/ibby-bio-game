@@ -1,0 +1,17 @@
+<!--
+  PLACEHOLDER — replace with hand-trace from Figma.
+  Source: note-previews/notes-p-06.png ("Water striders (pond skaters) use surface tension
+  to walk on water with their six legs" — hand-drawn strider on wavy water-surface line).
+  This is the resolution-scene hero diagram (mystery payoff).
+-->
+<svg id="strider_1" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+  <path id="strider_1_surface" d="M20,120 Q60,100 100,120 T180,120 T260,120 T340,120 T420,120 T480,120"
+        stroke="#87ceeb" stroke-width="3" fill="none" />
+  <g id="strider_1_bug" stroke="#2c3e50" stroke-width="2" fill="none">
+    <ellipse cx="250" cy="95" rx="22" ry="10" fill="#2c3e50" fill-opacity="0.85" stroke="none" />
+    <line x1="235" y1="105" x2="205" y2="130" />
+    <line x1="245" y1="108" x2="230" y2="135" />
+    <line x1="265" y1="105" x2="295" y2="130" />
+    <line x1="255" y1="108" x2="270" y2="135" />
+  </g>
+</svg>

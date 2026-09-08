@@ -1,0 +1,31 @@
+<!--
+  PLACEHOLDER — replace with hand-trace from Figma.
+  Source: note-previews/biology-notes-03.png ("The attraction between two water molecules
+  is called a hydrogen bond" — 3-molecule dashed hydrogen-bond diagram) and
+  note-previews/notes-p-06.png (single dashed h-bond chain used for the strider scene).
+  Palette: oxygen pink #e84393, hydrogen yellow #f4d03f, h-bond dashed dark gray.
+-->
+<svg id="hbond_1" viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+  <g id="hbond_1_dashes" stroke="#2c3e50" stroke-width="2" stroke-dasharray="6 6" fill="none">
+    <line id="hbond_a" x1="110" y1="80" x2="250" y2="150" />
+    <line id="hbond_b" x1="250" y1="150" x2="390" y2="80" />
+  </g>
+  <g id="hbond_1_molecule_a">
+    <circle cx="90" cy="60" r="34" fill="#e84393" fill-opacity="0.35" stroke="#e84393" stroke-width="2.5" />
+    <text x="90" y="67" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22">O</text>
+    <circle cx="55" cy="90" r="16" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" />
+    <circle cx="115" cy="95" r="16" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" />
+  </g>
+  <g id="hbond_1_molecule_b">
+    <circle cx="250" cy="150" r="34" fill="#e84393" fill-opacity="0.35" stroke="#e84393" stroke-width="2.5" />
+    <text x="250" y="157" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22">O</text>
+    <circle cx="215" cy="180" r="16" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" />
+    <circle cx="280" cy="180" r="16" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" />
+  </g>
+  <g id="hbond_1_molecule_c">
+    <circle cx="410" cy="60" r="34" fill="#e84393" fill-opacity="0.35" stroke="#e84393" stroke-width="2.5" />
+    <text x="410" y="67" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22">O</text>
+    <circle cx="375" cy="90" r="16" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" />
+    <circle cx="440" cy="95" r="16" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2" />
+  </g>
+</svg>

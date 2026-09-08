@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Neucha&display=swap");
+
+:root {
+  /* Locked palette — traced from Ibby's Biology Notes.pdf (see note-previews/biology-notes-02.png) */
+  --ibby-cream: #fefdf0;
+  --ibby-grid: #e8e4c9;
+  --ibby-oxygen-pink: #e84393;
+  --ibby-hydrogen-yellow: #f4d03f;
+  --ibby-water-blue: #87ceeb;
+  --ibby-keyword-red: #e74c3c;
+  --ibby-heading-purple: #8e44ad;
+  --ibby-ink: #2c3e50;
+
+  --font-hand: "Caveat", "Neucha", cursive;
+  --font-body: -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--ibby-cream);
+  background-image: linear-gradient(var(--ibby-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ibby-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ibby-ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.ibby-heading {
+  font-family: var(--font-hand);
+  color: var(--ibby-heading-purple);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.ibby-keyword {
+  color: var(--ibby-keyword-red);
+  font-weight: 600;
+}
+
+.scene {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.battle-stage {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  touch-action: none; /* drag-label needs full control of touch gestures on iPad */
+}
+
+@media (max-width: 1024px) {
+  .ibby-heading {
+    font-size: 2rem;
+  }
+}

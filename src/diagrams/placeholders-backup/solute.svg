@@ -1,0 +1,21 @@
+<!--
+  PLACEHOLDER — replace with hand-trace from Figma.
+  Source: note-previews/notes-p-08.png ("Solvent properties of water" — solvent / solutes /
+  solution three-beaker diagram). Supporting diagram, out-of-scope for MVP's 3 battles but
+  kept as a stub for a future episode wedge.
+-->
+<svg id="solute_1" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+  <g id="solute_1_beaker" stroke="#2c3e50" stroke-width="2" fill="none">
+    <rect x="30" y="40" width="80" height="100" />
+    <rect x="290" y="40" width="80" height="100" />
+  </g>
+  <rect x="30" y="90" width="80" height="50" fill="#87ceeb" fill-opacity="0.5" />
+  <rect x="290" y="90" width="80" height="50" fill="#87ceeb" fill-opacity="0.5" />
+  <g id="solute_1_particles" fill="#2c3e50">
+    <circle cx="320" cy="105" r="4" />
+    <circle cx="335" cy="120" r="4" />
+    <circle cx="350" cy="100" r="4" />
+    <circle cx="360" cy="125" r="4" />
+  </g>
+  <line x1="120" y1="90" x2="280" y2="90" stroke="#2c3e50" stroke-width="1.5" stroke-dasharray="4 4" />
+</svg>

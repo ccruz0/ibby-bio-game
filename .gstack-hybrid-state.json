@@ -1,0 +1,135 @@
+{
+  "phase": "qa-pass1",
+  "lastSkill": "qa",
+  "summary": "QA pass 1: exercised full MVP flow (Setup→Battle1→Battle2→Battle3→Resolution) end-to-end via headless browser with real drag/click/radio interactions; 3/3 evidence, 100% score, 0 console errors. Found + fixed 1 critical bug: all 3 GSAP diagram animations (molecule/hbond/strider) settled at ~5% opacity instead of 1 due to React.StrictMode double-invoking mount effects with no timeline cleanup — refactored to gsap.context()+revert() per GSAP's documented StrictMode-safety pattern. vitest 14/14, tsc clean, both before and after fix. No deploy. Report: ~/.gstack/projects/ibby-bio-game/carlos-scaffold-test-outcome-2026-09-08T1700.md",
+  "updatedAt": "2026-09-08T17:10:00Z",
+  "project": "ibby-bio-game",
+  "model": "sonnet",
+  "status": "DONE_WITH_CONCERNS",
+  "qa_result": {
+    "flow_exercised": "Setup, Battle 1 (drag-label), Battle 2 (click-match), Battle 3 (scenario MC), Resolution — all pass",
+    "diagrams_render_animate": "FIXED — were stuck at ~4-7% opacity on every dev-mode mount (React.StrictMode double-effect + no GSAP cleanup); now settle at opacity:1 and animate correctly",
+    "quiz_validation": "verified correct for all 3 battles: drag-zone tolerance check (Battle1), pair matching (Battle2), scenario MC with wrong-answer retry path (Battle3)",
+    "blockers": "none remaining",
+    "unit_tests": "14/14 passing (vitest), before and after fix",
+    "typecheck": "clean (tsc -b --noEmit), before and after fix",
+    "console_errors": "0 (only harmless React Router v7 future-flag warnings, pre-existing)",
+    "files_changed": [
+      "src/animations/moleculeTimeline.ts",
+      "src/animations/hbondTimeline.ts",
+      "src/animations/striderTimeline.ts",
+      "src/scenes/SetupScene.tsx",
+      "src/scenes/ResolutionScene.tsx",
+      "src/battles/Battle3_Scenario.tsx"
+    ],
+    "deferred_not_fixed": [
+      "Unstyled default-grey buttons (matches README's own 'no art polish yet' scope note)",
+      "Battle 1/2 have no keyboard/screen-reader path (pointer-only SVG interactions, no ARIA) — needs a design-level alternative interaction, not a small fix",
+      "React Router v7 future-flag console warnings (cosmetic, one-line fix available whenever wanted)"
+    ],
+    "report": "/home/box/.gstack/projects/ibby-bio-game/carlos-scaffold-test-outcome-2026-09-08T1700.md",
+    "screenshots": "/home/box/.gstack/projects/ibby-bio-game/qa-screenshots-2026-09-08/"
+  },
+  "phase_result": {
+    "phase4_draft": "CONFIRMED",
+    "phase4_5_semantic": "clean",
+    "phase4_5_redaction": "exit 0 (clean, LOW findings only)",
+    "phase5_archive": "written",
+    "phase5_issue_filed": false,
+    "phase5_issue_reason": "gh not authenticated; manual filing needed",
+    "scaffold_files_written": 41,
+    "scaffold_tests": "14/14 passing (vitest)",
+    "scaffold_typecheck": "clean (tsc -b --noEmit)",
+    "scaffold_browser_verify": "PASS \u2014 Setup + Battle 1 rendered in headless Chromium, 0 console errors",
+    "aws_deployed": false,
+    "aws_spend_risk": "$0 \u2014 infrastructure/ is IaC only, sam deploy never run; see infrastructure/README.md cost table",
+    "hand_trace_pass1": {
+      "svgs": [
+        "molecule.svg",
+        "hbond.svg",
+        "cohesion.svg",
+        "strider.svg",
+        "xylem.svg",
+        "solute.svg"
+      ],
+      "ids_preserved": true,
+      "tests": "14/14",
+      "backup": "src/diagrams/placeholders-backup/"
+    }
+  },
+  "hardRequirements": [
+    "Note-based animations from Ibby's Biology Notes.pdf diagrams (not generic stock art); topic PDFs for syllabus/micrograph refs"
+  ],
+  "lockedDecisions": [
+    {
+      "id": "D1",
+      "choice": "C",
+      "label": "Hybrid: quiz battles in a story frame",
+      "lockedAt": "2026-09-08T08:08:55Z"
+    },
+    {
+      "id": "D2",
+      "choice": "A",
+      "label": "Hand-drawn 2D notebook \u2014 doodles on graph paper",
+      "lockedAt": "2026-09-08T08:08:55Z"
+    },
+    {
+      "id": "D3",
+      "choice": "A",
+      "label": "ACCEPT ALL five MVP premises (P1\u2013P5)",
+      "lockedAt": "2026-09-08T08:19:06Z"
+    },
+    {
+      "id": "spec-D1",
+      "choice": "A",
+      "label": "React + GSAP/JSX",
+      "lockedAt": "2026-09-08T08:52:56Z"
+    },
+    {
+      "id": "spec-D2",
+      "choice": "A",
+      "label": "SVG via Figma hand-trace",
+      "lockedAt": "2026-09-08T08:52:56Z"
+    },
+    {
+      "id": "spec-D3",
+      "choice": "A",
+      "label": "Custom quiz logic",
+      "lockedAt": "2026-09-08T08:52:56Z"
+    },
+    {
+      "id": "spec-D4",
+      "choice": "B",
+      "label": "Server-backed state (AWS Cognito anonymous + DynamoDB + API Gateway/Lambda)",
+      "lockedAt": "2026-09-08T08:52:56Z"
+    },
+    {
+      "id": "spec-D5",
+      "choice": "A",
+      "label": "Self-trace in Figma (builder)",
+      "lockedAt": "2026-09-08T08:52:56Z"
+    }
+  ],
+  "artifactsDir": "/home/box/.gstack/projects/ibby-bio-game/",
+  "specArchivePath": "/home/box/.gstack/projects/ibby-bio-game/specs/20260908-153738-213319-water-a11-mvp-spec.md",
+  "flags": "--no-dedupe --no-execute --file-only",
+  "nextSkill": "QA pass 1 done (see qa_result). Conductor: no .git repo exists yet — recommend `git init` + initial commit before any further fix passes, so future /qa fixes get atomic, revertible commits. Optional: Figma upload for Ibby visual review/polish. AWS deploy still gated.",
+  "humanBlocker": "1) GitHub issue not filed: gh not authenticated (unchanged from Phase 5, not re-attempted per instruction). 2) AWS SSO token missing (`aws sts get-caller-identity` fails) \u2014 consistent with the no-deploy decision, but will block a real deploy later; Conductor should run `aws sso login` when ready to deploy infrastructure/template.yaml. 3) Before any `sam deploy`: Conductor OK required (see infrastructure/README.md cost table \u2014 expected $0 at playtest scale but not contractually free tier).",
+  "log": "/workspace/ibby-bio-game/logs/run-scaffold-20260908T154421Z.log",
+  "priorLogs": [
+    "/workspace/ibby-bio-game/logs/spec-haiku-20260908T082915Z.log",
+    "/workspace/ibby-bio-game/logs/spec-haiku-resume-p2-20260908T083400Z.log",
+    "/workspace/ibby-bio-game/logs/spec-haiku-resume-p3dec-20260908T083700Z.log",
+    "/workspace/ibby-bio-game/logs/spec-haiku-resume-p3locked-20260908T084920Z.log",
+    "/workspace/ibby-bio-game/logs/spec-haiku-resume-p4confirm-20260908T152037Z.log",
+    "/workspace/ibby-bio-game/logs/spec-haiku-resume-p4confirm-20260908T153540Z.log",
+    "/workspace/ibby-bio-game/logs/run-scaffold-20260908T154421Z.log"
+  ],
+  "claudeSession": "72289959-9121-4bad-93fa-db189ebe9974",
+  "priorClaudeSession": "1d1039f9-b818-45fa-b87b-2e9944e816d6",
+  "specDraft": "/home/box/.gstack/projects/ibby-bio-game/spec-draft-water-a11-2026-09-08.md",
+  "designDoc": "/home/box/.gstack/projects/ibby-bio-game/design-hybrid-water-a11-2026-09-08.md",
+  "productReq": "/home/box/.gstack/projects/ibby-bio-game/PRODUCT-REQ-note-animations-2026-09-08.md",
+  "openDecisions": [],
+  "scaffoldLog": "/workspace/ibby-bio-game/logs/run-scaffold-20260908T154421Z.log"
+}

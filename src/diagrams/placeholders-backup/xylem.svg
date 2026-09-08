@@ -1,0 +1,24 @@
+<!--
+  PLACEHOLDER — replace with hand-trace from Figma.
+  Source: note-previews/notes-p-04.png ("Conduction of water under tension in xylem" —
+  tubular vessel with water column + molecule zoom) and notes-p-07.png (capillary action tubes).
+  Supporting diagram, used in ResolutionScene recap / optional Battle 3 hint.
+-->
+<svg id="xylem_1" viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg">
+  <g id="xylem_1_vessel" stroke="#2c3e50" stroke-width="3" fill="none">
+    <line x1="90" y1="20" x2="90" y2="300" />
+    <line x1="150" y1="20" x2="150" y2="300" />
+  </g>
+  <rect id="xylem_1_water" x="90" y="120" width="60" height="180" fill="#87ceeb" fill-opacity="0.5" />
+  <g id="xylem_1_molecules" fill="#e84393" fill-opacity="0.4" stroke="#e84393" stroke-width="1.5">
+    <circle cx="120" cy="160" r="10" />
+    <circle cx="120" cy="210" r="10" />
+    <circle cx="120" cy="260" r="10" />
+  </g>
+  <path id="xylem_1_arrow" d="M120,110 L120,40" stroke="#2c3e50" stroke-width="3" marker-end="url(#arrowhead)" />
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#2c3e50" />
+    </marker>
+  </defs>
+</svg>

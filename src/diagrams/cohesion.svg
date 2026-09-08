@@ -1,0 +1,49 @@
+<!--
+  HAND-TRACED from note-previews/notes-p-05.png ("1 bond = weak" / "many bonds = strong"
+  zigzag chain diagram, "Use of water surface as habitats" surface-tension row).
+  Palette: oxygen pink #e84393, hydrogen yellow #f4d03f, ink #2c3e50, keyword red #e74c3c.
+-->
+<svg id="cohesion_1" viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="cohesion_blobA" d="M53,-3 C60,15 30,50 2,51 C-25,52 -50,25 -49,4 C-48,-18 -20,-53 -3,-52 C15,-51 48,-25 53,-3 Z" />
+    <path id="cohesion_blobB" d="M50,4 C55,25 22,53 -4,50 C-28,47 -52,20 -50,-5 C-48,-28 -22,-52 3,-50 C26,-48 48,-18 50,4 Z" />
+    <path id="cohesion_blobC" d="M48,-8 C58,10 35,48 8,53 C-18,58 -50,30 -51,3 C-52,-22 -28,-50 -2,-51 C22,-52 42,-28 48,-8 Z" />
+  </defs>
+
+  <g id="cohesion_1_chain" stroke="#2c3e50" stroke-width="2" stroke-dasharray="5 5" fill="none">
+    <line x1="60" y1="88" x2="150" y2="58" />
+    <line x1="150" y1="58" x2="240" y2="92" />
+    <line x1="240" y1="92" x2="330" y2="58" />
+    <line x1="330" y1="58" x2="420" y2="88" />
+  </g>
+
+  <g id="cohesion_1_molecules">
+    <g transform="translate(60,88)">
+      <use href="#cohesion_blobA" transform="scale(0.34)" fill="#e84393" fill-opacity="0.4" stroke="#e84393" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobB" transform="translate(-11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobC" transform="translate(11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+    </g>
+    <g transform="translate(150,58)">
+      <use href="#cohesion_blobB" transform="scale(0.34)" fill="#e84393" fill-opacity="0.4" stroke="#e84393" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobC" transform="translate(-11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobA" transform="translate(11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+    </g>
+    <g transform="translate(240,92)">
+      <use href="#cohesion_blobC" transform="scale(0.34)" fill="#e84393" fill-opacity="0.4" stroke="#e84393" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobA" transform="translate(-11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobB" transform="translate(11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+    </g>
+    <g transform="translate(330,58)">
+      <use href="#cohesion_blobA" transform="scale(0.34)" fill="#e84393" fill-opacity="0.4" stroke="#e84393" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobB" transform="translate(-11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobC" transform="translate(11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+    </g>
+    <g transform="translate(420,88)">
+      <use href="#cohesion_blobB" transform="scale(0.34)" fill="#e84393" fill-opacity="0.4" stroke="#e84393" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobC" transform="translate(-11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      <use href="#cohesion_blobA" transform="translate(11,11) scale(0.17)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+    </g>
+  </g>
+
+  <text x="240" y="140" text-anchor="middle" font-family="Caveat, sans-serif" font-size="20" fill="#2c3e50">many bonds = <tspan fill="#e74c3c">strong</tspan></text>
+</svg>

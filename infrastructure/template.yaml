@@ -1,0 +1,97 @@
+# AWS SAM template — Ibby Bio Game, Water A1.1 progress backend.
+# STUB ONLY. Not deployed. See infrastructure/README.md for cost profile and the
+# Conductor-OK gate required before running `sam deploy`.
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Anonymous player-progress backend for the Water A1.1 MVP episode.
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Timeout: 5
+    MemorySize: 128
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref ProgressTable
+
+Resources:
+  # Anonymous auth only — no passwords, no email. Cognito issues a stable
+  # identity id per device/browser that becomes player_id.
+  IdentityPool:
+    Type: AWS::Cognito::IdentityPool
+    Properties:
+      IdentityPoolName: IbbyBioGameAnonymous
+      AllowUnauthenticatedIdentities: true
+
+  ProgressTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: player_progress
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: player_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: player_id
+          KeyType: HASH
+
+  ProgressApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'*'" # tighten to the deployed frontend origin before real playtest
+
+  InitSessionFn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda/progressInit.handler
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ProgressApi
+            Path: /progress/init
+            Method: post
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProgressTable
+
+  BattleCompleteFn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda/progressBattleComplete.handler
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ProgressApi
+            Path: /progress/battle-complete
+            Method: post
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProgressTable
+
+  SessionFn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda/progressSession.handler
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ProgressApi
+            Path: /progress/session
+            Method: get
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProgressTable
+
+Outputs:
+  ApiUrl:
+    Description: Base URL for the progress API (set as VITE_API_BASE_URL)
+    Value: !Sub "https://${ProgressApi}.execute-api.${AWS::Region}.amazonaws.com/prod"
+  IdentityPoolId:
+    Value: !Ref IdentityPool
