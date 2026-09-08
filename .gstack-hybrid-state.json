@@ -1,14 +1,14 @@
 {
-  "phase": "qa-pass1",
+  "phase": "git-initialized",
   "lastSkill": "qa",
-  "summary": "QA pass 1: exercised full MVP flow (Setup→Battle1→Battle2→Battle3→Resolution) end-to-end via headless browser with real drag/click/radio interactions; 3/3 evidence, 100% score, 0 console errors. Found + fixed 1 critical bug: all 3 GSAP diagram animations (molecule/hbond/strider) settled at ~5% opacity instead of 1 due to React.StrictMode double-invoking mount effects with no timeline cleanup — refactored to gsap.context()+revert() per GSAP's documented StrictMode-safety pattern. vitest 14/14, tsc clean, both before and after fix. No deploy. Report: ~/.gstack/projects/ibby-bio-game/carlos-scaffold-test-outcome-2026-09-08T1700.md",
-  "updatedAt": "2026-09-08T17:10:00Z",
+  "summary": "git init on main; initial commit 76a4dbd (scaffold+hand-trace+GSAP StrictMode QA fix). No remote. /ship gated on Conductor OK.",
+  "updatedAt": "2026-09-08T23:32:22Z",
   "project": "ibby-bio-game",
   "model": "sonnet",
-  "status": "DONE_WITH_CONCERNS",
+  "status": "READY_FOR_SHIP_DECISION",
   "qa_result": {
-    "flow_exercised": "Setup, Battle 1 (drag-label), Battle 2 (click-match), Battle 3 (scenario MC), Resolution — all pass",
-    "diagrams_render_animate": "FIXED — were stuck at ~4-7% opacity on every dev-mode mount (React.StrictMode double-effect + no GSAP cleanup); now settle at opacity:1 and animate correctly",
+    "flow_exercised": "Setup, Battle 1 (drag-label), Battle 2 (click-match), Battle 3 (scenario MC), Resolution \u2014 all pass",
+    "diagrams_render_animate": "FIXED \u2014 were stuck at ~4-7% opacity on every dev-mode mount (React.StrictMode double-effect + no GSAP cleanup); now settle at opacity:1 and animate correctly",
     "quiz_validation": "verified correct for all 3 battles: drag-zone tolerance check (Battle1), pair matching (Battle2), scenario MC with wrong-answer retry path (Battle3)",
     "blockers": "none remaining",
     "unit_tests": "14/14 passing (vitest), before and after fix",
@@ -24,7 +24,7 @@
     ],
     "deferred_not_fixed": [
       "Unstyled default-grey buttons (matches README's own 'no art polish yet' scope note)",
-      "Battle 1/2 have no keyboard/screen-reader path (pointer-only SVG interactions, no ARIA) — needs a design-level alternative interaction, not a small fix",
+      "Battle 1/2 have no keyboard/screen-reader path (pointer-only SVG interactions, no ARIA) \u2014 needs a design-level alternative interaction, not a small fix",
       "React Router v7 future-flag console warnings (cosmetic, one-line fix available whenever wanted)"
     ],
     "report": "/home/box/.gstack/projects/ibby-bio-game/carlos-scaffold-test-outcome-2026-09-08T1700.md",
@@ -113,7 +113,7 @@
   "artifactsDir": "/home/box/.gstack/projects/ibby-bio-game/",
   "specArchivePath": "/home/box/.gstack/projects/ibby-bio-game/specs/20260908-153738-213319-water-a11-mvp-spec.md",
   "flags": "--no-dedupe --no-execute --file-only",
-  "nextSkill": "QA pass 1 done (see qa_result). Conductor: no .git repo exists yet — recommend `git init` + initial commit before any further fix passes, so future /qa fixes get atomic, revertible commits. Optional: Figma upload for Ibby visual review/polish. AWS deploy still gated.",
+  "nextSkill": "QA pass 1 done (see qa_result). Conductor: no .git repo exists yet \u2014 recommend `git init` + initial commit before any further fix passes, so future /qa fixes get atomic, revertible commits. Optional: Figma upload for Ibby visual review/polish. AWS deploy still gated.",
   "humanBlocker": "1) GitHub issue not filed: gh not authenticated (unchanged from Phase 5, not re-attempted per instruction). 2) AWS SSO token missing (`aws sts get-caller-identity` fails) \u2014 consistent with the no-deploy decision, but will block a real deploy later; Conductor should run `aws sso login` when ready to deploy infrastructure/template.yaml. 3) Before any `sam deploy`: Conductor OK required (see infrastructure/README.md cost table \u2014 expected $0 at playtest scale but not contractually free tier).",
   "log": "/workspace/ibby-bio-game/logs/run-scaffold-20260908T154421Z.log",
   "priorLogs": [
@@ -131,5 +131,10 @@
   "designDoc": "/home/box/.gstack/projects/ibby-bio-game/design-hybrid-water-a11-2026-09-08.md",
   "productReq": "/home/box/.gstack/projects/ibby-bio-game/PRODUCT-REQ-note-animations-2026-09-08.md",
   "openDecisions": [],
-  "scaffoldLog": "/workspace/ibby-bio-game/logs/run-scaffold-20260908T154421Z.log"
+  "scaffoldLog": "/workspace/ibby-bio-game/logs/run-scaffold-20260908T154421Z.log",
+  "git": {
+    "branch": "main",
+    "commit": "76a4dbd",
+    "remote": null
+  }
 }
