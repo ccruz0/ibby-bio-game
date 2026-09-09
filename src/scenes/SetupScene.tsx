@@ -26,7 +26,7 @@ export default function SetupScene() {
         dangerouslySetInnerHTML={{ __html: MoleculeSvg }}
         aria-hidden="true"
       />
-      <button onClick={() => navigate("/battle/1")}>Start the investigation →</button>
+      <button className="ibby-btn" onClick={() => navigate("/battle/1")}>Start the investigation →</button>
     </div>
   );
 }

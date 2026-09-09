@@ -133,9 +133,25 @@ export default function Battle1_Label() {
         ))}
       </svg>
 
-      {hint && <p className="ibby-keyword">{hint}</p>}
+      <div className="ibby-chip-row" aria-label="Label placement status">
+        {chips.map((chip) => (
+          <span
+            key={chip.id}
+            className={`ibby-chip${chip.correct === true ? " is-correct" : chip.correct === false ? " is-wrong" : ""}`}
+            data-correct={chip.correct === null ? undefined : String(chip.correct)}
+          >
+            {chip.label}
+          </span>
+        ))}
+      </div>
 
-      <button onClick={handleSubmit} disabled={!allPlacedCorrectly}>
+      {hint && (
+        <p className="ibby-feedback is-wrong" data-tone="wrong" role="status">
+          {hint}
+        </p>
+      )}
+
+      <button className="ibby-btn" onClick={handleSubmit} disabled={!allPlacedCorrectly}>
         Confirm evidence →
       </button>
     </div>

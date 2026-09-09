@@ -29,10 +29,12 @@ export default function ResolutionScene() {
         dangerouslySetInnerHTML={{ __html: StriderSvg }}
         aria-hidden="true"
       />
-      <p>
-        Case closed — you cracked {completedCount} of 3 pieces of evidence. Overall score:{" "}
-        {progress?.overall_score ?? 0}%.
-      </p>
+      <div className="ibby-chip-row">
+        <span className="ibby-chip is-correct">
+          Case closed — {completedCount} of 3 evidence
+        </span>
+        <span className="ibby-chip">Score: {progress?.overall_score ?? 0}%</span>
+      </div>
     </div>
   );
 }

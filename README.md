@@ -13,13 +13,14 @@ Constraints (Carlos 2026-09-08):
 - No production deploy without OK
 - HARD: Note-based animations from Ibby's Biology Notes.pdf diagrams (not generic stock art)
 
-## Status: scaffold (no art polish yet)
+## Status: Water A1.1 playable locally; polish pass in progress
 
-This is the implementation scaffold for the locked tech stack — React Router shell,
-stub scene/battle components, custom quiz-validation logic, placeholder SVG diagrams
-(traced-page references in `src/diagrams/README.md`), and an **undeployed** AWS SAM
-stack for anonymous progress sync. See `infrastructure/README.md` for the AWS cost
-profile and the Conductor-OK gate before any `sam deploy`.
+Water A1.1 runs end-to-end in the browser (Setup → 3 battles → Resolution). Hand-trace
+pass 1 for the production SVGs is done (see `src/diagrams/README.md`). Notebook UI
+chrome (`.ibby-btn` / `.ibby-chip` / `.ibby-option` / `.ibby-feedback`) is landing in
+this polish pass. AWS SAM progress stack remains **undeployed** — see
+`infrastructure/README.md` for the cost profile and Conductor-OK gate before any
+`sam deploy`.
 
 ## Run it
 
@@ -47,9 +48,8 @@ infrastructure/ AWS SAM template + Lambda handlers (NOT deployed)
 tests/          unit (quiz logic, API client) + integration (Setup→Battle1 flow)
 ```
 
-## Next up (builder-owned, non-code)
+## Next up (builder-owned)
 
-Hand-trace the 5–8 diagrams in Figma from the exact source pages listed in
-`src/diagrams/README.md`, preserving Ibby's palette and organic line weight, then
-swap them into the existing SVG group IDs (animations and battle validators already
-target those IDs, so no other code changes needed).
+Hand-trace pass 1 is complete. Remaining polish: optional Figma upload for Ibby visual
+review, tighter notebook chrome on remaining chrome edges, and playtest iteration — still
+no production deploy without Conductor OK.

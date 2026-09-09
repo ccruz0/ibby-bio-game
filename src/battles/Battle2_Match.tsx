@@ -97,12 +97,18 @@ export default function Battle2_Match() {
         ))}
       </svg>
 
-      {hint && <p className="ibby-keyword">{hint}</p>}
-      <p>
-        Bonds found: {correctPairsFound} / {ANSWER_KEY.length}
-      </p>
+      {hint && (
+        <p className="ibby-feedback is-wrong" data-tone="wrong" role="status">
+          {hint}
+        </p>
+      )}
+      <div className="ibby-chip-row">
+        <span className={`ibby-chip${done ? " is-correct" : ""}`}>
+          Bonds found: {correctPairsFound} / {ANSWER_KEY.length}
+        </span>
+      </div>
 
-      <button onClick={handleSubmit} disabled={!done}>
+      <button className="ibby-btn" onClick={handleSubmit} disabled={!done}>
         Confirm evidence →
       </button>
     </div>

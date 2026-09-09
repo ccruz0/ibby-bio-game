@@ -46,9 +46,12 @@ export default function Battle3_Scenario() {
       <div className="battle-stage" ref={diagramRef} dangerouslySetInnerHTML={{ __html: HbondSvg }} aria-hidden="true" />
 
       <p>Why can a water strider stand on the surface of a pond without sinking?</p>
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="ibby-options" role="radiogroup" aria-label="Scenario answers">
         {OPTIONS.map((opt) => (
-          <label key={opt.id} style={{ display: "flex", gap: 8 }}>
+          <label
+            key={opt.id}
+            className={`ibby-option${choice === opt.id ? " is-selected" : ""}`}
+          >
             <input
               type="radio"
               name="scenario"
@@ -64,21 +67,27 @@ export default function Battle3_Scenario() {
       </div>
 
       {submitted && !correct && (
-        <p className="ibby-keyword">
+        <p className="ibby-feedback is-wrong" data-tone="wrong" role="status">
           {attempts >= 3
             ? "Hint: think about what holds water molecules together at the surface — the same force from Evidence 2."
             : "Not quite — try again."}
         </p>
       )}
-      {submitted && correct && <p>✅ Yes! Cohesion from hydrogen bonds creates surface tension.</p>}
+      {submitted && correct && (
+        <p className="ibby-feedback is-ok" data-tone="ok" role="status">
+          ✅ Yes! Cohesion from hydrogen bonds creates surface tension.
+        </p>
+      )}
 
       {!submitted && (
-        <button onClick={handleCheck} disabled={!choice}>
+        <button className="ibby-btn" onClick={handleCheck} disabled={!choice}>
           Check answer
         </button>
       )}
       {submitted && (
-        <button onClick={handleContinue}>{correct ? "Solve the mystery →" : "Continue anyway →"}</button>
+        <button className="ibby-btn" onClick={handleContinue}>
+          {correct ? "Solve the mystery →" : "Continue anyway →"}
+        </button>
       )}
     </div>
   );
