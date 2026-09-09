@@ -1,0 +1,40 @@
+<!--
+  HAND-TRACED complementary base-pairing diagram (IB Biology A1.2.6 — "DNA as a double helix
+  ... two strands linked by hydrogen bonding between complementary base pairs"). Adenine pairs
+  with thymine via 2 hydrogen bonds; guanine pairs with cytosine via 3 hydrogen bonds.
+  Palette: adenine blue #3498db, thymine yellow #f4d03f, guanine green #27ae60, cytosine red
+  #e74c3c, ink #2c3e50, h-bonds dashed.
+  Group ids kept stable — GSAP timeline in src/animations/basepairTimeline.ts targets them.
+-->
+<svg id="basepair_1" viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="basepair_blob" d="M50,4 C55,25 22,53 -4,50 C-28,47 -52,20 -50,-5 C-48,-28 -22,-52 3,-50 C26,-48 48,-18 50,4 Z" />
+  </defs>
+
+  <g id="basepair_1_dashes" stroke="#2c3e50" stroke-width="2" stroke-dasharray="6 6" fill="none">
+    <line x1="118" y1="100" x2="182" y2="100" />
+    <line x1="118" y1="120" x2="182" y2="120" />
+    <line x1="378" y1="95" x2="442" y2="95" />
+    <line x1="378" y1="110" x2="442" y2="110" />
+    <line x1="378" y1="125" x2="442" y2="125" />
+  </g>
+
+  <g id="basepair_1_pair_at">
+    <use href="#basepair_blob" transform="translate(80,110) scale(0.68)" fill="#3498db" fill-opacity="0.4" stroke="#3498db" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="80" y="117" text-anchor="middle" font-family="Caveat, sans-serif" font-size="24" fill="#2c3e50">A</text>
+    <use href="#basepair_blob" transform="translate(220,110) scale(0.68)" fill="#f4d03f" fill-opacity="0.5" stroke="#f4d03f" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="220" y="117" text-anchor="middle" font-family="Caveat, sans-serif" font-size="24" fill="#2c3e50">T</text>
+  </g>
+
+  <g id="basepair_1_pair_gc">
+    <use href="#basepair_blob" transform="translate(340,110) scale(0.68)" fill="#27ae60" fill-opacity="0.4" stroke="#27ae60" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="340" y="117" text-anchor="middle" font-family="Caveat, sans-serif" font-size="24" fill="#2c3e50">G</text>
+    <use href="#basepair_blob" transform="translate(480,110) scale(0.68)" fill="#e74c3c" fill-opacity="0.4" stroke="#e74c3c" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="480" y="117" text-anchor="middle" font-family="Caveat, sans-serif" font-size="24" fill="#2c3e50">C</text>
+  </g>
+
+  <g font-family="Caveat, sans-serif" font-size="16" fill="#2c3e50">
+    <text x="150" y="165" text-anchor="middle">A&#8211;T: 2 bonds</text>
+    <text x="410" y="165" text-anchor="middle">G&#8211;C: 3 bonds</text>
+  </g>
+</svg>

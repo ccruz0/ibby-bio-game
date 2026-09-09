@@ -1,0 +1,40 @@
+<!--
+  HAND-TRACED nucleotide diagram (IB Biology A1.2.2 "Components of a nucleotide" — phosphate,
+  pentose sugar, nitrogenous base), styled after Figures 4/5 in "IB Biology A1.2 Nucleic Acids"
+  and Ibby's notebook aesthetic from Water A1.1.
+  Palette: phosphate yellow #f4d03f, sugar water-blue #87ceeb, base green #27ae60, ink #2c3e50.
+  Group ids kept stable — GSAP timeline in src/animations/nucleotideTimeline.ts targets them.
+-->
+<svg id="nucleotide_1" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="nucleotide_blobCircle" d="M53,-3 C60,15 30,50 2,51 C-25,52 -50,25 -49,4 C-48,-18 -20,-53 -3,-52 C15,-51 48,-25 53,-3 Z" />
+    <path id="nucleotide_blobPentagon" d="M0,-58 C18,-58 40,-40 46,-14 C50,4 44,30 22,46 C4,58 -20,58 -38,44 C-52,32 -52,6 -46,-16 C-40,-40 -18,-58 0,-58 Z" />
+    <path id="nucleotide_blobRect" d="M-45,-25 C-40,-32 40,-32 45,-25 C50,-18 50,18 45,25 C40,32 -40,32 -45,25 C-50,18 -50,-18 -45,-25 Z" />
+  </defs>
+
+  <g id="nucleotide_1_bonds" stroke="#2c3e50" stroke-width="3" fill="none" stroke-linecap="round">
+    <line id="bond_sugar_phosphate" x1="175" y1="145" x2="140" y2="115" />
+    <line id="bond_sugar_base" x1="232" y1="170" x2="268" y2="170" />
+  </g>
+
+  <g id="nucleotide_1_sugar">
+    <use href="#nucleotide_blobPentagon" transform="translate(200,170) scale(0.95)" fill="#87ceeb" fill-opacity="0.45" stroke="#2c3e50" stroke-width="3" vector-effect="non-scaling-stroke" />
+    <text x="200" y="177" text-anchor="middle" font-family="Caveat, sans-serif" font-size="24" fill="#2c3e50">sugar</text>
+  </g>
+
+  <g id="nucleotide_1_phosphate">
+    <use href="#nucleotide_blobCircle" transform="translate(110,90) scale(0.75)" fill="#f4d03f" fill-opacity="0.55" stroke="#f4d03f" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="110" y="97" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22" fill="#2c3e50">P</text>
+  </g>
+
+  <g id="nucleotide_1_base">
+    <use href="#nucleotide_blobRect" transform="translate(300,170) scale(0.95)" fill="#27ae60" fill-opacity="0.4" stroke="#27ae60" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <text x="300" y="177" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22" fill="#2c3e50">base</text>
+  </g>
+
+  <g id="nucleotide_1_dropzones" opacity="0">
+    <circle id="dropzone_p" cx="110" cy="90" r="30" />
+    <circle id="dropzone_s" cx="200" cy="170" r="55" />
+    <circle id="dropzone_b" cx="300" cy="170" r="30" />
+  </g>
+</svg>
