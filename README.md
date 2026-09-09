@@ -22,6 +22,12 @@ are in this polish pass. **Slice C classmate playtest pack** (docs) is ready —
 AWS SAM progress stack remains **undeployed** — see `infrastructure/README.md` for the
 cost profile and Conductor-OK gate before any `sam deploy`.
 
+The engine is now config-driven and multi-episode (see
+[`docs/ENGINE_GENERALIZE.md`](docs/ENGINE_GENERALIZE.md)) — Water A1.1 is one
+`EpisodeConfig` among any number of episodes, reachable at `/e/water-a1.1/...` (old
+`/battle/*` links still redirect there). A thin second episode (`cells-a2.1-demo`,
+Fast-Lane shape) proves the engine loads more than just Water A1.1; see `/episodes`.
+
 ## Classmate playtest pack (Slice C)
 
 Facilitator guide + Google Form draft for Ibby + 5–10 classmates (local / approved host only):
@@ -46,16 +52,17 @@ No AWS credentials or backend needed to play locally — progress is stored in
 
 ```
 src/
-  scenes/       SetupScene, StoryBridge, ResolutionScene (story frame + bridges)
-  battles/      Battle1_Label (drag), Battle2_Match (pair), Battle3_Scenario (MC)
-  hooks/        useQuizValidation (scoring), useProgress (local + API)
+  episodes/     EpisodeConfig schema + one config module per episode + registry
+  scenes/       SetupScene, StoryBridge, ResolutionScene, EpisodeHome (generic, config-driven)
+  battles/      LabelBattle (drag), MatchBattle (pair), ScenarioBattle (MC) — generic, config-driven
+  hooks/        useQuizValidation (scoring), useProgress (local + API, keyed per episode id)
   context/      GameContext (React Context session state)
   diagrams/     placeholder SVGs — see diagrams/README.md for trace-source map
   animations/   GSAP timelines per diagram
   api/          progress.ts — REST client for the (undeployed) AWS backend
-docs/           Slice C classmate playtest pack (facilitator + form draft)
+docs/           ENGINE_GENERALIZE.md (schema + how to add an episode); Slice C classmate playtest pack
 infrastructure/ AWS SAM template + Lambda handlers (NOT deployed)
-tests/          unit (quiz logic, API client) + integration (Setup→Battle1 flow)
+tests/          unit (quiz logic, API client) + integration (Setup→Battle1 flow, multi-episode engine)
 ```
 
 ## Next up (builder-owned)

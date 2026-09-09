@@ -1,32 +1,39 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import { playMoleculeReveal } from "../animations/moleculeTimeline";
-import MoleculeSvg from "../diagrams/molecule.svg?raw";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { episodeBattlePath } from "../episodes/navigation";
+import { getEpisode } from "../episodes/registry";
 
 export default function SetupScene() {
+  const { episodeId } = useParams<{ episodeId: string }>();
   const navigate = useNavigate();
   const diagramRef = useRef<HTMLDivElement>(null);
+  const episode = episodeId ? getEpisode(episodeId) : undefined;
 
   useEffect(() => {
-    if (!diagramRef.current) return;
-    return playMoleculeReveal(diagramRef.current);
-  }, []);
+    if (!diagramRef.current || !episode?.setup.playRevealAnimation) return;
+    return episode.setup.playRevealAnimation(diagramRef.current);
+  }, [episode]);
+
+  if (!episode) return <Navigate to="/" replace />;
+
+  const firstBattle = episode.battles[0];
 
   return (
     <div className="scene">
-      <h1 className="ibby-heading">The Water Strider Mystery</h1>
-      <p>
-        You and Ibby are young scientists investigating a strange sight down by the pond:{" "}
-        <span className="ibby-keyword">water striders</span> walking on water without sinking. Something about
-        water itself must explain it — time to look closer.
-      </p>
+      <h1 className="ibby-heading">{episode.setup.heading}</h1>
+      <p>{episode.setup.body}</p>
       <div
         className="battle-stage"
         ref={diagramRef}
-        dangerouslySetInnerHTML={{ __html: MoleculeSvg }}
+        dangerouslySetInnerHTML={{ __html: episode.setup.diagramSvg }}
         aria-hidden="true"
       />
-      <button className="ibby-btn" onClick={() => navigate("/battle/1")}>Start the investigation →</button>
+      <button
+        className="ibby-btn"
+        onClick={() => navigate(episodeBattlePath(episode.id, firstBattle.id))}
+      >
+        {episode.setup.cta}
+      </button>
     </div>
   );
 }

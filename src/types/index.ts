@@ -1,4 +1,6 @@
-export type BattleId = "battle_1" | "battle_2" | "battle_3";
+// Battle and episode ids are config-defined strings (see src/episodes/types.ts),
+// not a fixed union — the engine supports any number of episodes/battles.
+export type BattleId = string;
 
 export type BattleType = "drag-label" | "match" | "scenario";
 
@@ -11,7 +13,7 @@ export interface BattleProgress {
 
 export interface PlayerProgress {
   player_id: string;
-  episode: "water-a1.1";
+  episode: string; // episode id, e.g. "water-a1.1"
   battles: Record<BattleId, BattleProgress>;
   episode_status: "in_progress" | "complete";
   overall_score: number;
