@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useProgress } from "../hooks/useProgress";
 import { isWithinDragZone, scoreBattle } from "../hooks/useQuizValidation";
 import type { DragLabelZone } from "../types";
+import MoleculeSvg from "../diagrams/molecule.svg?raw";
 
 // Coordinates match src/diagrams/molecule.svg's #molecule_1_dropzones (viewBox 400x300).
 const DIAGRAM_SIZE = 400;
@@ -26,15 +27,20 @@ const START_POSITIONS: Record<string, { x: number; y: number }> = {
   dropzone_h2: { x: 260, y: 40 },
 };
 
+const TEACH_BACK =
+  "Teach-back: oxygen (pink) sits in the middle; the two hydrogens (yellow) share electrons with it — a polar H₂O ready to attract other waters.";
+
 export default function Battle1_Label() {
   const navigate = useNavigate();
   const { complete } = useProgress();
   const svgRef = useRef<SVGSVGElement>(null);
+  const [phase, setPhase] = useState<"setup" | "quiz">("setup");
   const [chips, setChips] = useState<Chip[]>(
     ZONES.map((z) => ({ id: z.id, label: z.label, ...START_POSITIONS[z.id], correct: null }))
   );
   const [attempts, setAttempts] = useState(0);
   const [hint, setHint] = useState<string | null>(null);
+
   const draggingId = useRef<string | null>(null);
 
   const allPlacedCorrectly = useMemo(() => chips.every((c) => c.correct === true), [chips]);
@@ -82,7 +88,27 @@ export default function Battle1_Label() {
     const correctCount = chips.filter((c) => c.correct).length;
     const score = scoreBattle(correctCount, chips.length);
     complete("battle_1", score);
-    navigate("/battle/2");
+    navigate("/bridge/1");
+  }
+
+  if (phase === "setup") {
+    return (
+      <div className="scene ibby-battle-setup" data-battle="1">
+        <h1 className="ibby-heading">Evidence 1: What is a water molecule?</h1>
+        <p className="ibby-bridge-copy">
+          First stop in the notebook: zoom into one water molecule. Label the atoms so we
+          know which end of the magnet is which.
+        </p>
+        <div
+          className="battle-stage ibby-bridge-diagram"
+          dangerouslySetInnerHTML={{ __html: MoleculeSvg }}
+          aria-hidden="true"
+        />
+        <button className="ibby-btn" type="button" onClick={() => setPhase("quiz")}>
+          Label the atoms →
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -148,6 +174,12 @@ export default function Battle1_Label() {
       {hint && (
         <p className="ibby-feedback is-wrong" data-tone="wrong" role="status">
           {hint}
+        </p>
+      )}
+
+      {allPlacedCorrectly && (
+        <p className="ibby-feedback is-ok" data-tone="ok" role="status">
+          {TEACH_BACK}
         </p>
       )}
 

@@ -4,6 +4,7 @@ import { useProgress } from "../hooks/useProgress";
 import { isCorrectScenarioChoice, scoreBattle } from "../hooks/useQuizValidation";
 import { playHbondReveal } from "../animations/hbondTimeline";
 import HbondSvg from "../diagrams/hbond.svg?raw";
+import CohesionSvg from "../diagrams/cohesion.svg?raw";
 import type { ScenarioOption } from "../types";
 
 const OPTIONS: ScenarioOption[] = [
@@ -12,18 +13,22 @@ const OPTIONS: ScenarioOption[] = [
   { id: "opt_temp", text: "The pond water is cold enough to be slightly frozen at the surface.", correct: false },
 ];
 
+const TEACH_BACK =
+  "✅ Teach-back: cohesion from hydrogen bonds creates surface tension — a stretchy film that can hold a light insect.";
+
 export default function Battle3_Scenario() {
   const navigate = useNavigate();
   const { complete } = useProgress();
   const diagramRef = useRef<HTMLDivElement>(null);
+  const [phase, setPhase] = useState<"setup" | "quiz">("setup");
   const [choice, setChoice] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
   useEffect(() => {
-    if (!diagramRef.current) return;
+    if (phase !== "quiz" || !diagramRef.current) return;
     return playHbondReveal(diagramRef.current);
-  }, []);
+  }, [phase]);
 
   const correct = choice ? isCorrectScenarioChoice(choice, OPTIONS) : false;
 
@@ -37,6 +42,27 @@ export default function Battle3_Scenario() {
     const score = scoreBattle(correct ? 1 : 0, 1);
     complete("battle_3", score);
     navigate("/resolution");
+  }
+
+  if (phase === "setup") {
+    return (
+      <div className="scene ibby-battle-setup" data-battle="3">
+        <h1 className="ibby-heading">Evidence 3: Why does cohesion let insects float?</h1>
+        <p className="ibby-bridge-copy">
+          Back at the pond: many hydrogen bonds mean{" "}
+          <span className="ibby-keyword">cohesion</span>. Predict why a water strider can
+          stand on the surface without sinking.
+        </p>
+        <div
+          className="battle-stage ibby-bridge-diagram"
+          dangerouslySetInnerHTML={{ __html: CohesionSvg }}
+          aria-hidden="true"
+        />
+        <button className="ibby-btn" type="button" onClick={() => setPhase("quiz")}>
+          Make a prediction →
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -75,7 +101,7 @@ export default function Battle3_Scenario() {
       )}
       {submitted && correct && (
         <p className="ibby-feedback is-ok" data-tone="ok" role="status">
-          ✅ Yes! Cohesion from hydrogen bonds creates surface tension.
+          {TEACH_BACK}
         </p>
       )}
 

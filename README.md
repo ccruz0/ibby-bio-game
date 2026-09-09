@@ -15,10 +15,10 @@ Constraints (Carlos 2026-09-08):
 
 ## Status: Water A1.1 playable locally; polish pass in progress
 
-Water A1.1 runs end-to-end in the browser (Setup → 3 battles → Resolution). Hand-trace
-pass 1 for the production SVGs is done (see `src/diagrams/README.md`). Notebook UI
-chrome (`.ibby-btn` / `.ibby-chip` / `.ibby-option` / `.ibby-feedback`) is landing in
-this polish pass. AWS SAM progress stack remains **undeployed** — see
+Water A1.1 runs end-to-end in the browser (Setup → B1 → bridge → B2 → bridge → B3 →
+Resolution). Hand-trace pass 1 for the production SVGs is done (see
+`src/diagrams/README.md`). Notebook UI chrome plus Slice B story bridges / teach-back
+are in this polish pass. AWS SAM progress stack remains **undeployed** — see
 `infrastructure/README.md` for the cost profile and Conductor-OK gate before any
 `sam deploy`.
 
@@ -26,7 +26,7 @@ this polish pass. AWS SAM progress stack remains **undeployed** — see
 
 ```bash
 npm install
-npm run dev       # http://localhost:5173 — Setup → Battle 1 → 2 → 3 → Resolution
+npm run dev       # http://localhost:5173 — Setup → B1 → bridge → B2 → bridge → B3 → Resolution
 npm test          # unit + integration tests (vitest)
 ```
 
@@ -37,7 +37,7 @@ No AWS credentials or backend needed to play locally — progress is stored in
 
 ```
 src/
-  scenes/       SetupScene, ResolutionScene (story frame)
+  scenes/       SetupScene, StoryBridge, ResolutionScene (story frame + bridges)
   battles/      Battle1_Label (drag), Battle2_Match (pair), Battle3_Scenario (MC)
   hooks/        useQuizValidation (scoring), useProgress (local + API)
   context/      GameContext (React Context session state)
@@ -50,6 +50,6 @@ tests/          unit (quiz logic, API client) + integration (Setup→Battle1 flo
 
 ## Next up (builder-owned)
 
-Hand-trace pass 1 is complete. Remaining polish: optional Figma upload for Ibby visual
-review, tighter notebook chrome on remaining chrome edges, and playtest iteration — still
-no production deploy without Conductor OK.
+Hand-trace pass 1 + Slice A chrome + Slice B bridges are in. Remaining: optional Figma
+upload for Ibby visual review and playtest iteration — still no production deploy without
+Conductor OK.

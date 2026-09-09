@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useProgress } from "../hooks/useProgress";
 import { isCorrectMatch, scoreBattle } from "../hooks/useQuizValidation";
 import type { MatchPair } from "../types";
+import HbondSvg from "../diagrams/hbond.svg?raw";
 
 const MOLECULES = [
   { id: "mol_a", x: 90, y: 70 },
@@ -16,9 +17,13 @@ const ANSWER_KEY: MatchPair[] = [
   { id: "pair_bc", fromId: "mol_b", toId: "mol_c" },
 ];
 
+const TEACH_BACK =
+  "Teach-back: hydrogen bonds are the dashed attractions between neighboring H₂O molecules — weaker than covalent bonds, but strong enough in numbers to glue water together.";
+
 export default function Battle2_Match() {
   const navigate = useNavigate();
   const { complete } = useProgress();
+  const [phase, setPhase] = useState<"setup" | "quiz">("setup");
   const [selected, setSelected] = useState<string | null>(null);
   const [drawnPairs, setDrawnPairs] = useState<{ fromId: string; toId: string; correct: boolean }[]>([]);
   const [attempts, setAttempts] = useState(0);
@@ -54,7 +59,28 @@ export default function Battle2_Match() {
   function handleSubmit() {
     const score = scoreBattle(correctPairsFound, ANSWER_KEY.length);
     complete("battle_2", score);
-    navigate("/battle/3");
+    navigate("/bridge/2");
+  }
+
+  if (phase === "setup") {
+    return (
+      <div className="scene ibby-battle-setup" data-battle="2">
+        <h1 className="ibby-heading">Evidence 2: How do hydrogen bonds work?</h1>
+        <p className="ibby-bridge-copy">
+          Water molecules don&apos;t float alone. Sketch the dashed attractions that tug one
+          H₂O toward the next — those are the bonds that build{" "}
+          <span className="ibby-keyword">cohesion</span>.
+        </p>
+        <div
+          className="battle-stage ibby-bridge-diagram"
+          dangerouslySetInnerHTML={{ __html: HbondSvg }}
+          aria-hidden="true"
+        />
+        <button className="ibby-btn" type="button" onClick={() => setPhase("quiz")}>
+          Draw the bonds →
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -102,6 +128,13 @@ export default function Battle2_Match() {
           {hint}
         </p>
       )}
+
+      {done && (
+        <p className="ibby-feedback is-ok" data-tone="ok" role="status">
+          {TEACH_BACK}
+        </p>
+      )}
+
       <div className="ibby-chip-row">
         <span className={`ibby-chip${done ? " is-correct" : ""}`}>
           Bonds found: {correctPairsFound} / {ANSWER_KEY.length}

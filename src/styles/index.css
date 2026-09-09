@@ -221,3 +221,36 @@ body {
   flex-direction: column;
   gap: 0.55rem;
 }
+
+/* Slice B — between-battle story bridges + battle setup cards */
+
+.ibby-bridge-copy {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  max-width: 40rem;
+  margin: 0;
+}
+
+.ibby-bridge-diagram {
+  max-width: 720px;
+  border: 2px dashed color-mix(in srgb, var(--ibby-heading-purple) 55%, var(--ibby-grid));
+  border-radius: 14px;
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--ibby-cream) 88%, var(--ibby-water-blue));
+}
+
+.ibby-bridge-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ibby-bridge-diagram--peek {
+  max-width: 480px;
+  opacity: 0.92;
+}
+
+.ibby-battle-setup .ibby-bridge-diagram {
+  max-width: 640px;
+}
