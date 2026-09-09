@@ -155,3 +155,10 @@ Optional: **Browser** (Chrome / Safari / Other) — useful if touch or layout bu
 | Completion (live notes) | ≥ 2 of 3 battles, no hard blocker |
 
 Export responses to CSV after the session for Carlos / builder iteration.
+
+
+## Live form (2026-09-09)
+
+- **Responder:** https://docs.google.com/forms/d/e/1FAIpQLSdiwMFc-FafmQlH3yvgJ9b2W1KzukepgPdf4pJFa-LZq_usVw/viewform
+- **Edit:** https://docs.google.com/forms/d/1C81YwDqfc88dcV6FggKCqh9jyEmM0AQBNhWbIiI5RYo/edit
+- Account: carloscruzdiazdelosbernardos@gmail.com (no sign-in required)
