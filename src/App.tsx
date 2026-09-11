@@ -32,7 +32,7 @@ export default function App() {
           <Route path="/e/:episodeId/resolution" element={<ResolutionScene />} />
 
           {/* Legacy Water A1.1 routes — keep old links/bookmarks working. */}
-          <Route path="/" element={<Navigate to={`/e/${LEGACY_EPISODE_ID}/setup`} replace />} />
+          <Route path="/" element={<EpisodeHome />} />
           <Route path="/battle/:legacyBattleNumber" element={<LegacyBattleRedirect />} />
           <Route path="/bridge/:bridgeId" element={<LegacyBridgeRedirect />} />
           <Route path="/resolution" element={<Navigate to={`/e/${LEGACY_EPISODE_ID}/resolution`} replace />} />
