@@ -1,0 +1,70 @@
+<!--
+  HAND-TRACED prokaryotic cell diagram (IB Biology A2.2 "Prokaryote cell structure"),
+  showing nucleoid, ribosomes, cell wall, cell membrane, cytoplasm.
+  Palette: nucleoid orange #e67e22, ribosomes red #c0392b, cell wall blue #3498db,
+  cell membrane green #27ae60, cytoplasm #f0f0f0, ink #2c3e50.
+-->
+<svg id="prokaryotic_cell_1" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="prokaryote_blobOval" d="M70,-25 C90,-15 100,30 80,65 C60,85 -60,85 -80,65 C-100,30 -90,-15 -70,-25 C-40,-40 40,-40 70,-25 Z" />
+    <path id="prokaryote_blobSmall" d="M25,-10 C35,8 20,30 0,32 C-20,34 -35,15 -35,0 C-35,-15 -20,-32 0,-32 C20,-32 15,-25 25,-10 Z" />
+  </defs>
+
+  <!-- Cell wall (outer rigid boundary) -->
+  <g id="prokaryotic_cell_cell_wall">
+    <ellipse cx="250" cy="200" rx="220" ry="180" fill="none" stroke="#3498db" stroke-width="4" opacity="0.8" />
+    <path d="M 30 200 Q 250 30 470 200 M 30 200 Q 250 370 470 200" fill="none" stroke="#3498db" stroke-width="1.5" opacity="0.3" stroke-dasharray="4,3" />
+    <text x="50" y="100" font-family="Caveat, sans-serif" font-size="13" fill="#2c3e50" opacity="0.7">cell wall</text>
+  </g>
+
+  <!-- Cell membrane (inside wall) -->
+  <g id="prokaryotic_cell_cell_membrane">
+    <ellipse cx="250" cy="200" rx="210" ry="170" fill="none" stroke="#27ae60" stroke-width="2" opacity="0.6" />
+    <ellipse cx="250" cy="200" rx="210" ry="170" fill="#27ae60" fill-opacity="0.05" stroke="none" />
+  </g>
+
+  <!-- Cytoplasm background -->
+  <g id="prokaryotic_cell_cytoplasm">
+    <ellipse cx="250" cy="200" rx="200" ry="160" fill="#f0f0f0" fill-opacity="0.4" stroke="none" />
+  </g>
+
+  <!-- Nucleoid (region of DNA, not membrane-bound) -->
+  <g id="prokaryotic_cell_nucleoid">
+    <ellipse cx="250" cy="180" rx="60" ry="75" fill="#e67e22" fill-opacity="0.35" stroke="#e67e22" stroke-width="2" stroke-dasharray="4,2" opacity="0.7" />
+    <path d="M200,150 Q250,140 300,150 Q280,180 250,190 Q220,180 200,150" fill="none" stroke="#e67e22" stroke-width="1.5" opacity="0.5" />
+    <text x="250" y="185" text-anchor="middle" font-family="Caveat, sans-serif" font-size="16" fill="#2c3e50" font-weight="bold">nucleoid</text>
+  </g>
+
+  <!-- Ribosomes (70S, scattered throughout) -->
+  <g id="prokaryotic_cell_ribosome_1">
+    <circle cx="150" cy="150" r="7" fill="#c0392b" fill-opacity="0.6" stroke="#c0392b" stroke-width="1.5" />
+    <text x="165" y="155" font-family="Caveat, sans-serif" font-size="11" fill="#2c3e50">70S</text>
+  </g>
+
+  <g id="prokaryotic_cell_ribosome_2">
+    <circle cx="350" cy="200" r="7" fill="#c0392b" fill-opacity="0.6" stroke="#c0392b" stroke-width="1.5" />
+    <text x="365" y="205" font-family="Caveat, sans-serif" font-size="11" fill="#2c3e50">70S</text>
+  </g>
+
+  <g id="prokaryotic_cell_ribosome_3">
+    <circle cx="200" cy="280" r="7" fill="#c0392b" fill-opacity="0.6" stroke="#c0392b" stroke-width="1.5" />
+  </g>
+
+  <g id="prokaryotic_cell_ribosome_4">
+    <circle cx="320" cy="300" r="7" fill="#c0392b" fill-opacity="0.6" stroke="#c0392b" stroke-width="1.5" />
+  </g>
+
+  <!-- Pili (optional hair-like structures) -->
+  <g id="prokaryotic_cell_pili" opacity="0.5">
+    <line x1="100" y1="250" x2="60" y2="320" stroke="#2c3e50" stroke-width="2" stroke-dasharray="3,2" />
+    <line x1="400" y1="280" x2="440" y2="350" stroke="#2c3e50" stroke-width="2" stroke-dasharray="3,2" />
+    <text x="50" y="340" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50">pili</text>
+  </g>
+
+  <!-- Dropzones for matching (hidden) -->
+  <g id="prokaryotic_cell_dropzones" opacity="0">
+    <circle id="dropzone_cell_wall" cx="250" cy="50" r="40" />
+    <circle id="dropzone_nucleoid" cx="250" cy="180" r="50" />
+    <circle id="dropzone_ribosome_70s" cx="350" cy="200" r="30" />
+  </g>
+</svg>

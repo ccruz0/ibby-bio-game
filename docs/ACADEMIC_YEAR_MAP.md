@@ -60,7 +60,7 @@
 ## Next 12 priorities (after engine generalization)
 1. A1.1 Water (done MVP)
 2. A1.2 Nucleic Acids (done — `nucleic-acids-a1.2`, "The Perfect Copy Mystery")
-3. A2.2 Cell Structure
+3. A2.2 Cell Structure (done — `cell-structure-a2.2`, "What's Inside the Box?")
 4. B2.1 Membranes
 5. B1.2 Proteins
 6. C1.2 Cell respiration
