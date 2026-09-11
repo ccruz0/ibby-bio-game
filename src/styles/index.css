@@ -71,3 +71,186 @@ body {
     font-size: 2rem;
   }
 }
+
+/* Notebook-styled controls — cream grid / Caveat-Neucha / locked palette */
+
+.ibby-btn {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ibby-ink);
+  background: var(--ibby-cream);
+  border: 2.5px solid var(--ibby-ink);
+  border-radius: 12px 15px 11px 14px;
+  padding: 0.55rem 1.35rem;
+  cursor: pointer;
+  align-self: flex-start;
+  box-shadow: 2px 3px 0 color-mix(in srgb, var(--ibby-ink) 18%, var(--ibby-grid));
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease;
+}
+
+.ibby-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ibby-cream) 55%, var(--ibby-water-blue));
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 4px 0 var(--ibby-heading-purple);
+}
+
+.ibby-btn:active:not(:disabled) {
+  transform: translate(1px, 2px);
+  box-shadow: 1px 1px 0 var(--ibby-ink);
+}
+
+.ibby-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: #7f8c8d;
+  border-color: #95a5a6;
+  box-shadow: none;
+  background: color-mix(in srgb, var(--ibby-cream) 70%, var(--ibby-grid));
+}
+
+.ibby-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0.25rem 0.85rem;
+  border: 2px solid var(--ibby-ink);
+  border-radius: 999px;
+  background: var(--ibby-hydrogen-yellow);
+  color: var(--ibby-ink);
+  box-shadow: 1px 2px 0 var(--ibby-grid);
+  user-select: none;
+}
+
+.ibby-chip.is-selected,
+.ibby-chip[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--ibby-cream) 40%, var(--ibby-oxygen-pink));
+  border-color: var(--ibby-oxygen-pink);
+}
+
+.ibby-chip.is-correct,
+.ibby-chip[data-correct="true"] {
+  background: var(--ibby-water-blue);
+  border-color: var(--ibby-ink);
+}
+
+.ibby-chip.is-wrong,
+.ibby-chip[data-correct="false"] {
+  background: color-mix(in srgb, var(--ibby-cream) 55%, var(--ibby-keyword-red));
+  border-color: var(--ibby-keyword-red);
+  color: var(--ibby-keyword-red);
+}
+
+.ibby-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ibby-feedback {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  line-height: 1.35;
+  padding: 0.7rem 1rem;
+  border: 2px dashed var(--ibby-heading-purple);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ibby-cream) 82%, var(--ibby-water-blue));
+  color: var(--ibby-ink);
+  max-width: 42rem;
+}
+
+.ibby-feedback.is-wrong,
+.ibby-feedback[data-tone="wrong"] {
+  border-style: solid;
+  border-color: var(--ibby-keyword-red);
+  background: color-mix(in srgb, var(--ibby-cream) 78%, var(--ibby-keyword-red));
+  color: var(--ibby-keyword-red);
+}
+
+.ibby-feedback.is-ok,
+.ibby-feedback[data-tone="ok"] {
+  border-style: solid;
+  border-color: var(--ibby-water-blue);
+  background: color-mix(in srgb, var(--ibby-cream) 65%, var(--ibby-water-blue));
+  color: var(--ibby-ink);
+}
+
+.ibby-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  line-height: 1.35;
+  padding: 0.7rem 0.95rem;
+  border: 2px solid var(--ibby-ink);
+  border-radius: 12px 14px 11px 13px;
+  background: var(--ibby-cream);
+  color: var(--ibby-ink);
+  cursor: pointer;
+  max-width: 42rem;
+  box-shadow: 1px 2px 0 var(--ibby-grid);
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ibby-option:hover {
+  background: color-mix(in srgb, var(--ibby-cream) 70%, var(--ibby-grid));
+}
+
+.ibby-option.is-selected,
+.ibby-option:has(input:checked) {
+  border-color: var(--ibby-heading-purple);
+  background: color-mix(in srgb, var(--ibby-cream) 72%, var(--ibby-heading-purple));
+  box-shadow: 2px 2px 0 var(--ibby-heading-purple);
+}
+
+.ibby-option input[type="radio"] {
+  margin-top: 0.3rem;
+  accent-color: var(--ibby-heading-purple);
+  flex-shrink: 0;
+}
+
+.ibby-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+/* Slice B — between-battle story bridges + battle setup cards */
+
+.ibby-bridge-copy {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  max-width: 40rem;
+  margin: 0;
+}
+
+.ibby-bridge-diagram {
+  max-width: 720px;
+  border: 2px dashed color-mix(in srgb, var(--ibby-heading-purple) 55%, var(--ibby-grid));
+  border-radius: 14px;
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--ibby-cream) 88%, var(--ibby-water-blue));
+}
+
+.ibby-bridge-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ibby-bridge-diagram--peek {
+  max-width: 480px;
+  opacity: 0.92;
+}
+
+.ibby-battle-setup .ibby-bridge-diagram {
+  max-width: 640px;
+}

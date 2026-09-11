@@ -1,0 +1,48 @@
+<!--
+  HAND-TRACED semi-conservative DNA replication payoff diagram (IB Biology A1.2.8 — "role of
+  complementary base pairing in allowing genetic information to be replicated"). One parent
+  double helix opens at a replication fork into two daughter helices, each pairing one
+  original strand (purple) with one newly built strand (teal) — this is the resolution-scene
+  hero diagram (mystery payoff), mirroring strider.svg's role in Water A1.1.
+  Palette: original strand purple #8e44ad, new strand teal #87ceeb, bases as in basepair.svg,
+  ink #2c3e50.
+  Group ids kept stable — GSAP timeline in src/animations/replicationTimeline.ts targets them.
+-->
+<svg id="replication_1" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <g id="replication_1_parent" fill="none" stroke="#8e44ad" stroke-width="4" stroke-linecap="round">
+    <path d="M172,0 C174,40 170,80 172,140" />
+    <path d="M228,0 C226,40 230,80 228,140" />
+  </g>
+
+  <g id="replication_1_daughter_left" fill="none" stroke-linecap="round">
+    <path stroke="#8e44ad" stroke-width="4" d="M172,140 C140,158 90,168 70,180 C64,220 76,260 70,300 C64,340 76,370 70,400" />
+    <path stroke="#87ceeb" stroke-width="4" d="M90,180 C84,220 96,260 90,300 C84,340 96,370 90,400" />
+    <g stroke="#2c3e50" stroke-width="2" stroke-dasharray="4 4">
+      <line x1="72" y1="230" x2="108" y2="230" />
+      <line x1="72" y1="290" x2="108" y2="290" />
+      <line x1="72" y1="350" x2="108" y2="350" />
+    </g>
+    <circle cx="72" cy="230" r="6" fill="#3498db" />
+    <circle cx="108" cy="230" r="6" fill="#f4d03f" />
+    <circle cx="72" cy="290" r="6" fill="#27ae60" />
+    <circle cx="108" cy="290" r="6" fill="#e74c3c" />
+    <circle cx="72" cy="350" r="6" fill="#3498db" />
+    <circle cx="108" cy="350" r="6" fill="#f4d03f" />
+  </g>
+
+  <g id="replication_1_daughter_right" fill="none" stroke-linecap="round">
+    <path stroke="#8e44ad" stroke-width="4" d="M228,140 C260,158 310,168 330,180 C336,220 324,260 330,300 C336,340 324,370 330,400" />
+    <path stroke="#87ceeb" stroke-width="4" d="M310,180 C316,220 304,260 310,300 C316,340 304,370 310,400" />
+    <g stroke="#2c3e50" stroke-width="2" stroke-dasharray="4 4">
+      <line x1="292" y1="230" x2="328" y2="230" />
+      <line x1="292" y1="290" x2="328" y2="290" />
+      <line x1="292" y1="350" x2="328" y2="350" />
+    </g>
+    <circle cx="292" cy="230" r="6" fill="#27ae60" />
+    <circle cx="328" cy="230" r="6" fill="#e74c3c" />
+    <circle cx="292" cy="290" r="6" fill="#3498db" />
+    <circle cx="328" cy="290" r="6" fill="#f4d03f" />
+    <circle cx="292" cy="350" r="6" fill="#27ae60" />
+    <circle cx="328" cy="350" r="6" fill="#e74c3c" />
+  </g>
+</svg>

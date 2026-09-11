@@ -13,19 +13,35 @@ Constraints (Carlos 2026-09-08):
 - No production deploy without OK
 - HARD: Note-based animations from Ibby's Biology Notes.pdf diagrams (not generic stock art)
 
-## Status: scaffold (no art polish yet)
+## Status: Water A1.1 playable locally; polish pass in progress
 
-This is the implementation scaffold for the locked tech stack — React Router shell,
-stub scene/battle components, custom quiz-validation logic, placeholder SVG diagrams
-(traced-page references in `src/diagrams/README.md`), and an **undeployed** AWS SAM
-stack for anonymous progress sync. See `infrastructure/README.md` for the AWS cost
-profile and the Conductor-OK gate before any `sam deploy`.
+Water A1.1 runs end-to-end in the browser (Setup → B1 → bridge → B2 → bridge → B3 →
+Resolution). Hand-trace pass 1 for the production SVGs is done (see
+`src/diagrams/README.md`). Notebook UI chrome plus Slice B story bridges / teach-back
+are in this polish pass. **Slice C classmate playtest pack** (docs) is ready — see below.
+AWS SAM progress stack remains **undeployed** — see `infrastructure/README.md` for the
+cost profile and Conductor-OK gate before any `sam deploy`.
+
+The engine is now config-driven and multi-episode (see
+[`docs/ENGINE_GENERALIZE.md`](docs/ENGINE_GENERALIZE.md)) — Water A1.1 is one
+`EpisodeConfig` among any number of episodes, reachable at `/e/water-a1.1/...` (old
+`/battle/*` links still redirect there). A thin second episode (`cells-a2.1-demo`,
+Fast-Lane shape) proves the engine loads more than just Water A1.1; see `/episodes`.
+
+## Classmate playtest pack (Slice C)
+
+Facilitator guide + Google Form draft for Ibby + 5–10 classmates (local / approved host only):
+
+- [`docs/PLAYTEST_CLASSMATES.md`](docs/PLAYTEST_CLASSMATES.md) — purpose, 2–3 min intro script, 5–10 min flow, device notes, observation checklist, design success criteria
+- [`docs/PLAYTEST_FORM_QUESTIONS.md`](docs/PLAYTEST_FORM_QUESTIONS.md) — comprehension (Water A1.1), Likert, free text, optional device — paste into Google Forms
+
+**Hosting / AWS / Vercel still need Carlos OK** before any shared or production deploy. Playtest from `npm run dev` (or a temporary URL Carlos has approved). Do not treat this pack as deploy authorization.
 
 ## Run it
 
 ```bash
 npm install
-npm run dev       # http://localhost:5173 — Setup → Battle 1 → 2 → 3 → Resolution
+npm run dev       # http://localhost:5173 — Setup → B1 → bridge → B2 → bridge → B3 → Resolution
 npm test          # unit + integration tests (vitest)
 ```
 
@@ -36,20 +52,21 @@ No AWS credentials or backend needed to play locally — progress is stored in
 
 ```
 src/
-  scenes/       SetupScene, ResolutionScene (story frame)
-  battles/      Battle1_Label (drag), Battle2_Match (pair), Battle3_Scenario (MC)
-  hooks/        useQuizValidation (scoring), useProgress (local + API)
+  episodes/     EpisodeConfig schema + one config module per episode + registry
+  scenes/       SetupScene, StoryBridge, ResolutionScene, EpisodeHome (generic, config-driven)
+  battles/      LabelBattle (drag), MatchBattle (pair), ScenarioBattle (MC) — generic, config-driven
+  hooks/        useQuizValidation (scoring), useProgress (local + API, keyed per episode id)
   context/      GameContext (React Context session state)
   diagrams/     placeholder SVGs — see diagrams/README.md for trace-source map
   animations/   GSAP timelines per diagram
   api/          progress.ts — REST client for the (undeployed) AWS backend
+docs/           ENGINE_GENERALIZE.md (schema + how to add an episode); Slice C classmate playtest pack
 infrastructure/ AWS SAM template + Lambda handlers (NOT deployed)
-tests/          unit (quiz logic, API client) + integration (Setup→Battle1 flow)
+tests/          unit (quiz logic, API client) + integration (Setup→Battle1 flow, multi-episode engine)
 ```
 
-## Next up (builder-owned, non-code)
+## Next up (builder-owned)
 
-Hand-trace the 5–8 diagrams in Figma from the exact source pages listed in
-`src/diagrams/README.md`, preserving Ibby's palette and organic line weight, then
-swap them into the existing SVG group IDs (animations and battle validators already
-target those IDs, so no other code changes needed).
+Hand-trace pass 1 + Slice A chrome + Slice B bridges + Slice C playtest docs are in.
+Remaining: run classmate playtest, iterate on feedback; optional Figma upload for Ibby
+visual review — still no production deploy without Conductor / Carlos OK.

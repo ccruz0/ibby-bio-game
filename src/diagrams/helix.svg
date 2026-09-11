@@ -1,0 +1,36 @@
+<!--
+  HAND-TRACED DNA double-helix schematic (IB Biology A1.2.6 — "DNA as a double helix made of
+  two antiparallel strands ... linked by hydrogen bonding between complementary base pairs"),
+  styled after Figure 10 in "IB Biology A1.2 Nucleic Acids" and Ibby's notebook aesthetic.
+  Decorative only (setup/bridge tease) — no GSAP timeline targets these ids.
+  Palette: backbone purple #8e44ad, adenine blue #3498db, thymine yellow #f4d03f, guanine
+  green #27ae60, cytosine red #e74c3c, ink #2c3e50.
+-->
+<svg id="helix_1" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+  <g id="helix_1_backbone" fill="none" stroke="#8e44ad" stroke-width="4" stroke-linecap="round">
+    <path id="helix_1_strand_left"
+      d="M150,0 C195,10 240,20 240,40 C240,60 195,70 150,80 C105,90 60,100 60,120 C60,140 105,150 150,160 C195,170 240,180 240,200 C240,220 195,230 150,240 C105,250 60,260 60,280 C60,300 105,310 150,320 C195,330 240,340 240,360 C240,380 195,390 150,400" />
+    <path id="helix_1_strand_right"
+      d="M150,0 C105,10 60,20 60,40 C60,60 105,70 150,80 C195,90 240,100 240,120 C240,140 195,150 150,160 C105,170 60,180 60,200 C60,220 105,230 150,240 C195,250 240,260 240,280 C240,300 195,310 150,320 C105,330 60,340 60,360 C60,380 105,390 150,400" />
+  </g>
+
+  <g id="helix_1_rungs" stroke="#2c3e50" stroke-width="2" stroke-dasharray="5 5">
+    <line x1="240" y1="40" x2="60" y2="40" />
+    <line x1="60" y1="120" x2="240" y2="120" />
+    <line x1="240" y1="200" x2="60" y2="200" />
+    <line x1="60" y1="280" x2="240" y2="280" />
+    <line x1="240" y1="360" x2="60" y2="360" />
+  </g>
+  <g id="helix_1_bases" stroke="#2c3e50" stroke-width="1.5">
+    <circle cx="240" cy="40" r="8" fill="#3498db" />
+    <circle cx="60" cy="40" r="8" fill="#f4d03f" />
+    <circle cx="60" cy="120" r="8" fill="#27ae60" />
+    <circle cx="240" cy="120" r="8" fill="#e74c3c" />
+    <circle cx="240" cy="200" r="8" fill="#f4d03f" />
+    <circle cx="60" cy="200" r="8" fill="#3498db" />
+    <circle cx="60" cy="280" r="8" fill="#e74c3c" />
+    <circle cx="240" cy="280" r="8" fill="#27ae60" />
+    <circle cx="240" cy="360" r="8" fill="#3498db" />
+    <circle cx="60" cy="360" r="8" fill="#f4d03f" />
+  </g>
+</svg>
