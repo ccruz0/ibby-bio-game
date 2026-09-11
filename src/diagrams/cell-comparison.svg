@@ -1,0 +1,50 @@
+<!--
+  Cell comparison diagram for match battle (prokaryote vs eukaryote features).
+  Shows labeled nodes for matching structures/features to cell types.
+-->
+<svg id="cell_comparison_1" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="comp_blobRect" d="M-35,-15 C-30,-22 30,-22 35,-15 C40,-8 40,8 35,15 C30,22 -30,22 -35,15 C-40,8 -40,-8 -35,-15 Z" />
+    <path id="comp_blobCircle" d="M25,-8 C30,5 18,28 0,30 C-18,32 -30,18 -30,0 C-30,-18 -18,-30 0,-30 C18,-30 20,-20 25,-8 Z" />
+  </defs>
+
+  <!-- Left column: Prokaryote features -->
+  <text x="100" y="30" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22" fill="#2c3e50" font-weight="bold">Prokaryote</text>
+
+  <g id="node_nucleoid">
+    <use href="#comp_blobRect" transform="translate(100,80)" fill="#e67e22" fill-opacity="0.45" stroke="#e67e22" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="100" y="85" text-anchor="middle" font-family="Caveat, sans-serif" font-size="14" fill="#2c3e50" font-weight="bold">Nucleoid</text>
+  </g>
+
+  <g id="node_70s_ribosome">
+    <use href="#comp_blobCircle" transform="translate(100,140)" fill="#c0392b" fill-opacity="0.5" stroke="#c0392b" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="100" y="145" text-anchor="middle" font-family="Caveat, sans-serif" font-size="13" fill="#2c3e50">70S</text>
+  </g>
+
+  <g id="node_cell_wall_prokaryote">
+    <use href="#comp_blobRect" transform="translate(100,200)" fill="#3498db" fill-opacity="0.45" stroke="#3498db" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="100" y="205" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50">Cell Wall</text>
+  </g>
+
+  <!-- Right column: Eukaryote features -->
+  <text x="600" y="30" text-anchor="middle" font-family="Caveat, sans-serif" font-size="22" fill="#2c3e50" font-weight="bold">Eukaryote</text>
+
+  <g id="node_nucleus">
+    <use href="#comp_blobCircle" transform="translate(600,80)" fill="#9b59b6" fill-opacity="0.45" stroke="#9b59b6" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="600" y="85" text-anchor="middle" font-family="Caveat, sans-serif" font-size="14" fill="#2c3e50" font-weight="bold">Nucleus</text>
+  </g>
+
+  <g id="node_80s_ribosome">
+    <use href="#comp_blobCircle" transform="translate(600,140)" fill="#e74c3c" fill-opacity="0.5" stroke="#e74c3c" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="600" y="145" text-anchor="middle" font-family="Caveat, sans-serif" font-size="13" fill="#2c3e50">80S</text>
+  </g>
+
+  <g id="node_membrane_bound_organelles">
+    <use href="#comp_blobRect" transform="translate(600,200)" fill="#f39c12" fill-opacity="0.45" stroke="#f39c12" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="600" y="203" text-anchor="middle" font-family="Caveat, sans-serif" font-size="11" fill="#2c3e50" font-weight="bold">Organelles</text>
+    <text x="600" y="216" text-anchor="middle" font-family="Caveat, sans-serif" font-size="10" fill="#2c3e50">(membrane-bound)</text>
+  </g>
+
+  <!-- Center: Match connections (will be drawn by battle logic) -->
+  <text x="350" y="320" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#999" opacity="0.7">Draw lines to match</text>
+</svg>

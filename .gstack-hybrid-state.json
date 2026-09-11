@@ -1,11 +1,11 @@
 {
-  "phase": "git-initialized",
-  "lastSkill": "qa",
-  "summary": "git init on main; initial commit 76a4dbd (scaffold+hand-trace+GSAP StrictMode QA fix). No remote. /ship gated on Conductor OK.",
-  "updatedAt": "2026-09-08T23:32:22Z",
+  "phase": "flagship-a2.2-built",
+  "lastSkill": "flagship-a2.2",
+  "summary": "A2.2 Cell Structure flagship episode built with Claude Code haiku: id cell-structure-a2.2, title What's Inside the Box?; 3 battles (drag-label/match/scenario), bridges, GSAP timelines, integration tests; tsc clean; vitest 25/25. Branch feature/flagship-a2.2-cell-structure.",
+  "updatedAt": "2026-09-11T02:40:04Z",
   "project": "ibby-bio-game",
-  "model": "sonnet",
-  "status": "READY_FOR_SHIP_DECISION",
+  "model": "haiku",
+  "status": "READY_FOR_PR",
   "qa_result": {
     "flow_exercised": "Setup, Battle 1 (drag-label), Battle 2 (click-match), Battle 3 (scenario MC), Resolution \u2014 all pass",
     "diagrams_render_animate": "FIXED \u2014 were stuck at ~4-7% opacity on every dev-mode mount (React.StrictMode double-effect + no GSAP cleanup); now settle at opacity:1 and animate correctly",

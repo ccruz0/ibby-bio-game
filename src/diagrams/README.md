@@ -42,3 +42,17 @@ purple `#8e44ad` (reused heading purple), new-strand teal `#87ceeb` (reused wate
 - Dropzone centers unchanged: `(200,150)`, `(130,220)`, `(270,220)`.
 - `xylem_1_water` is now a soft path fill (was a rect); id kept.
 - Optional Figma upload still useful for Ibby visual review / polish — not blocking MVP.
+
+## Diagram trace map (Cell Structure A2.2)
+
+Hand-traced SVGs for the `cell-structure-a2.2` flagship episode ("What's Inside the Box?"),
+following the same notebook style and locked palette with organelle-specific colors.
+
+| SVG file | Status | Battle / scene | Source |
+|---|---|---|---|
+| `eukaryotic-cell.svg` | **HAND-TRACED** | Setup reveal / Battle 1 — drag-label | IB A2.2 Cell Structure PDF + `note-previews/cell-structure-*.png` |
+| `prokaryote-cell.svg` | **HAND-TRACED** | Bridge 1 | IB A2.2.5 prokaryote cell structure |
+| `cell-comparison.svg` | **HAND-TRACED** | Battle 2 setup (visual reference) | prokaryote vs eukaryote features |
+| `cell-compartments.svg` | **HAND-TRACED** | Battle 3 / Resolution | compartmentalization concept |
+
+Palette extensions (A2.2): nucleus `#9b59b6`, mitochondria `#e74c3c`, ER `#3498db`, Golgi `#f39c12`, ribosomes `#c0392b`, membrane `#27ae60`.

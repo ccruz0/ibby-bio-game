@@ -1,0 +1,85 @@
+<!--
+  HAND-TRACED eukaryotic cell diagram (IB Biology A2.2 "Eukaryote cell structure"),
+  showing nucleus, mitochondria, endoplasmic reticulum, Golgi apparatus, ribosomes, cell membrane.
+  Palette: nucleus purple #9b59b6, mitochondria orange #e74c3c, ER blue #3498db,
+  Golgi yellow #f39c12, ribosome red #c0392b, membrane green #27ae60, cytoplasm #ecf0f1, ink #2c3e50.
+  Group ids kept stable — GSAP timeline targets them for reveal animation.
+-->
+<svg id="eukaryotic_cell_1" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blob shapes for cell components -->
+    <path id="cell_blobCircle" d="M40,-5 C50,12 25,45 0,46 C-25,47 -45,20 -45,0 C-45,-20 -20,-50 0,-50 C20,-50 30,-25 40,-5 Z" />
+    <path id="cell_blobOval" d="M60,-20 C75,0 75,40 60,55 C40,70 -40,70 -60,55 C-75,40 -75,0 -60,-20 C-40,-35 40,-35 60,-20 Z" />
+    <path id="cell_blobSmall" d="M20,-8 C28,5 15,25 0,26 C-15,27 -28,12 -28,0 C-28,-12 -15,-26 0,-26 C15,-26 12,-20 20,-8 Z" />
+    <path id="cell_blobWiggly" d="M50,-30 C70,-20 80,20 70,50 C60,75 20,85 -20,75 C-60,60 -75,20 -70,-10 C-65,-40 -20,-60 20,-60 C50,-60 35,-40 50,-30 Z" />
+  </defs>
+
+  <!-- Cell membrane (outer boundary) -->
+  <g id="eukaryotic_cell_membrane">
+    <ellipse cx="250" cy="200" rx="230" ry="190" fill="none" stroke="#27ae60" stroke-width="3" opacity="0.7" />
+    <ellipse cx="250" cy="200" rx="230" ry="190" fill="#27ae60" fill-opacity="0.08" stroke="none" />
+  </g>
+
+  <!-- Cytoplasm background -->
+  <g id="eukaryotic_cell_cytoplasm">
+    <ellipse cx="250" cy="200" rx="220" ry="180" fill="#ecf0f1" fill-opacity="0.3" stroke="none" />
+  </g>
+
+  <!-- Nucleus (largest, central organelle) -->
+  <g id="eukaryotic_cell_nucleus">
+    <use href="#cell_blobOval" transform="translate(250,140) scale(1.2)" fill="#9b59b6" fill-opacity="0.4" stroke="#9b59b6" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+    <circle cx="250" cy="140" r="75" fill="none" stroke="#2c3e50" stroke-width="2" stroke-dasharray="3,2" opacity="0.5" />
+    <text x="250" y="145" text-anchor="middle" font-family="Caveat, sans-serif" font-size="18" fill="#2c3e50" font-weight="bold">nucleus</text>
+  </g>
+
+  <!-- Mitochondria (multiple, scattered) -->
+  <g id="eukaryotic_cell_mitochondria_1">
+    <use href="#cell_blobOval" transform="translate(150,280) scale(0.7) rotate(-30)" fill="#e74c3c" fill-opacity="0.45" stroke="#e74c3c" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="150" y="285" text-anchor="middle" font-family="Caveat, sans-serif" font-size="14" fill="#2c3e50">mito</text>
+  </g>
+
+  <g id="eukaryotic_cell_mitochondria_2">
+    <use href="#cell_blobOval" transform="translate(350,280) scale(0.68) rotate(25)" fill="#e74c3c" fill-opacity="0.45" stroke="#e74c3c" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <text x="350" y="285" text-anchor="middle" font-family="Caveat, sans-serif" font-size="14" fill="#2c3e50">mito</text>
+  </g>
+
+  <!-- Endoplasmic reticulum (wiggly network) -->
+  <g id="eukaryotic_cell_endoplasm_reticulum">
+    <path d="M120,200 Q150,180 180,200 Q200,220 180,240 Q150,260 120,240 Z" fill="none" stroke="#3498db" stroke-width="2.5" opacity="0.6" />
+    <path d="M140,160 Q160,140 180,160" fill="none" stroke="#3498db" stroke-width="2" opacity="0.5" />
+    <path d="M340,200 Q360,180 380,200 Q400,220 380,240 Q360,260 340,240 Z" fill="none" stroke="#3498db" stroke-width="2.5" opacity="0.6" />
+    <text x="100" y="220" text-anchor="middle" font-family="Caveat, sans-serif" font-size="12" fill="#2c3e50" opacity="0.8">ER</text>
+  </g>
+
+  <!-- Golgi apparatus -->
+  <g id="eukaryotic_cell_golgi">
+    <g transform="translate(250,320)">
+      <rect x="-35" y="-15" width="70" height="30" fill="none" stroke="#f39c12" stroke-width="2.5" rx="5" opacity="0.7" />
+      <rect x="-30" y="-10" width="60" height="20" fill="#f39c12" fill-opacity="0.3" stroke="none" />
+      <text x="0" y="5" text-anchor="middle" font-family="Caveat, sans-serif" font-size="14" fill="#2c3e50">Golgi</text>
+    </g>
+  </g>
+
+  <!-- Ribosomes (small dots, scattered) -->
+  <g id="eukaryotic_cell_ribosome_1">
+    <circle cx="200" cy="160" r="6" fill="#c0392b" fill-opacity="0.6" stroke="#c0392b" stroke-width="1.5" />
+  </g>
+
+  <g id="eukaryotic_cell_ribosome_2">
+    <circle cx="310" cy="170" r="6" fill="#c0392b" fill-opacity="0.6" stroke="#c0392b" stroke-width="1.5" />
+  </g>
+
+  <g id="eukaryotic_cell_ribosome_3">
+    <circle cx="220" cy="240" r="6" fill="#c0392b" fill-opacity="0.6" stroke="#c0392b" stroke-width="1.5" />
+  </g>
+
+  <!-- Dropzones for drag-label battle (hidden) -->
+  <g id="eukaryotic_cell_dropzones" opacity="0">
+    <circle id="dropzone_nucleus" cx="250" cy="140" r="50" />
+    <circle id="dropzone_mitochondria" cx="150" cy="280" r="40" />
+    <circle id="dropzone_er" cx="140" cy="200" r="40" />
+    <circle id="dropzone_golgi" cx="250" cy="320" r="40" />
+    <circle id="dropzone_ribosome" cx="310" cy="170" r="25" />
+    <circle id="dropzone_membrane" cx="250" cy="50" r="35" />
+  </g>
+</svg>
