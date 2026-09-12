@@ -59,6 +59,27 @@ describe("score card", () => {
     expect(saved.battles?.battle_1?.score).toBe(100);
   });
 
+  it("shows the episode as solved on the resolution card, right after the last battle", async () => {
+    // The one-battle demo is the sharpest case: confirming it both finishes the
+    // episode and navigates, so a card reading only saved storage showed
+    // "Not started" on the very screen celebrating the win.
+    const user = userEvent.setup();
+    window.history.pushState({}, "", "/e/cells-a2.1-demo/setup");
+    render(<App />);
+
+    await user.click(screen.getByRole("button", { name: /Start the quick check/i }));
+    await user.click(await screen.findByRole("button", { name: /Answer the question/i }));
+    await user.click(screen.getByText(/To separate internal chemistry from the outside environment/i));
+    await user.click(screen.getByRole("button", { name: /Check answer/i }));
+    await user.click(await screen.findByRole("button", { name: /Finish the preview/i }));
+
+    const card = await screen.findByRole("region", { name: /Ibby's score card/i });
+    const row = screen.getByRole("row", { name: /Origins of Cells/i });
+    expect(row).toHaveTextContent("1 / 1");
+    expect(row).toHaveTextContent(/Solved/i);
+    expect(card).toHaveTextContent(/1 of 4 mysteries solved/i);
+  });
+
   it("is hidden on the notebook home, where the full card is shown instead", async () => {
     window.history.pushState({}, "", "/");
     render(<App />);
