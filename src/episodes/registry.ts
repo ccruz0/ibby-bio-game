@@ -6,9 +6,17 @@ import { mystery5Evolution } from "./mystery-5-evolution";
 import { mystery6Physiology } from "./mystery-6-physiology";
 import { mystery7Plants } from "./mystery-7-plants";
 import { mystery8NucleicAcids } from "./mystery-8-nucleic-acids";
+import { mystery9 } from "./mystery-9-cell-membranes";
+import { mystery10 } from "./mystery-10-enzyme-kinetics";
+import { mystery11 } from "./mystery-11-photosynthesis";
+import { mystery12 } from "./mystery-12-cellular-respiration";
+import { mystery13 } from "./mystery-13-dna-replication";
+import { mystery14 } from "./mystery-14-gene-expression";
+import { mystery15 } from "./mystery-15-mutations";
+import { mystery16 } from "./mystery-16-population-genetics";
 import type { EpisodeConfig } from "./types";
 
-// IB Biology Core Curriculum - 8 Complete Mysteries
+// IB Biology Core Curriculum - 16 Complete Mysteries
 export const episodeRegistry: EpisodeConfig[] = [
   mystery1Cells,
   mystery2Molecules,
@@ -18,6 +26,14 @@ export const episodeRegistry: EpisodeConfig[] = [
   mystery6Physiology,
   mystery7Plants,
   mystery8NucleicAcids,
+  mystery9,
+  mystery10,
+  mystery11,
+  mystery12,
+  mystery13,
+  mystery14,
+  mystery15,
+  mystery16,
 ];
 
 // Aliases for backward compatibility
