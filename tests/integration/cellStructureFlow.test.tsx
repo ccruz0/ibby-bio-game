@@ -13,7 +13,7 @@ describe("Cell Structure A2.2 flagship episode", () => {
     window.history.pushState({}, "", "/e/cell-structure-a2.2/setup");
     render(<App />);
 
-    expect(screen.getByText(/What's Inside the Box\?/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /What's Inside the Box\?/i })).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /Enter the cell/i }));
 

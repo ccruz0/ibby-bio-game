@@ -28,7 +28,7 @@ describe("multi-episode engine", () => {
     window.history.pushState({}, "", "/e/cells-a2.1-demo/setup");
     render(<App />);
 
-    expect(screen.getByText(/Origins of Cells \(Fast-Lane preview\)/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Origins of Cells \(Fast-Lane preview\)/i })).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /Start the quick check/i }));
     await user.click(await screen.findByRole("button", { name: /Answer the question/i }));

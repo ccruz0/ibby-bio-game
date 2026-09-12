@@ -374,3 +374,138 @@ body {
     transition: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Score card: the sticky bar on every episode screen, plus the full card on
+   the notebook home and after an episode is solved. One player per device.
+   --------------------------------------------------------------------------- */
+
+.ibby-scorebar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ibby-ink);
+  background: color-mix(in srgb, var(--ibby-cream) 92%, white);
+  border-bottom: 2.5px solid var(--ibby-ink);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--ibby-ink) 12%, transparent);
+}
+
+.ibby-scorebar-player {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--ibby-heading-purple);
+}
+
+.ibby-scorebar-sep {
+  opacity: 0.4;
+}
+
+.ibby-scorebar-episode {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.ibby-scorebar-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  margin-left: auto;
+}
+
+.ibby-scorebar-stat {
+  padding: 0.1rem 0.55rem;
+  border: 2px solid var(--ibby-ink);
+  border-radius: 999px;
+  background: var(--ibby-cream);
+  white-space: nowrap;
+}
+
+.ibby-scorecard {
+  margin: 1.75rem auto 0;
+  max-width: 34rem;
+  padding: 1rem;
+  text-align: left;
+  border: 2.5px solid var(--ibby-ink);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ibby-cream) 92%, white);
+}
+
+.ibby-scorecard-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  color: var(--ibby-heading-purple);
+}
+
+.ibby-scorecard-totals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.ibby-scorecard-total {
+  padding: 0.15rem 0.6rem;
+  border: 2px dashed var(--ibby-ink);
+  border-radius: 999px;
+}
+
+.ibby-scorecard-empty {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  opacity: 0.75;
+}
+
+.ibby-scorecard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+}
+
+.ibby-scorecard-caption {
+  margin-bottom: 0.4rem;
+  font-size: 0.75rem;
+  text-align: left;
+  opacity: 0.6;
+}
+
+.ibby-scorecard-table th,
+.ibby-scorecard-table td {
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ibby-ink) 30%, transparent);
+}
+
+.ibby-scorecard-table thead th {
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.ibby-scorecard-table tbody th {
+  font-weight: 600;
+}
+
+.ibby-scorecard-table tbody tr.is-current {
+  background: color-mix(in srgb, var(--ibby-water-blue) 22%, transparent);
+}
+
+@media (max-width: 30rem) {
+  .ibby-scorebar-stats {
+    margin-left: 0;
+    width: 100%;
+  }
+}

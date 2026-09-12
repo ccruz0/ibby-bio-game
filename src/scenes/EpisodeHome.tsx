@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Scoreboard from "../components/Scoreboard";
 import { episodeList } from "../episodes/registry";
 import { episodeSetupPath } from "../episodes/navigation";
 
@@ -14,6 +15,7 @@ export default function EpisodeHome() {
           </Link>
         ))}
       </div>
+      <Scoreboard />
     </div>
   );
 }

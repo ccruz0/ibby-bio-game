@@ -1,10 +1,7 @@
 import { useCallback, useEffect } from "react";
 import * as progressApi from "../api/progress";
 import { emptyProgress, useGame } from "../context/GameContext";
-
-function storageKey(episodeId: string): string {
-  return `ibby-bio-game:progress:${episodeId}`;
-}
+import { progressStorageKey as storageKey } from "../player/scoreboard";
 
 /**
  * Wraps the AWS-backed progress API with a localStorage fallback (Rollback
@@ -20,6 +17,10 @@ export function useProgress(episodeId: string, totalBattles: number) {
   const { progress, setProgress, recordScore } = useGame();
 
   useEffect(() => {
+    // Already holding this episode's progress in memory? Keep it: re-reading the
+    // saved copy here would overwrite a score recorded moments ago.
+    if (progress && progress.episode === episodeId) return;
+
     const cached = localStorage.getItem(storageKey(episodeId));
     if (cached) {
       const parsed = JSON.parse(cached) as ReturnType<typeof emptyProgress>;
@@ -37,12 +38,6 @@ export function useProgress(episodeId: string, totalBattles: number) {
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [episodeId]);
-
-  useEffect(() => {
-    if (progress && progress.episode === episodeId) {
-      localStorage.setItem(storageKey(episodeId), JSON.stringify(progress));
-    }
-  }, [progress, episodeId]);
 
   const complete = useCallback(
     (battleId: string, score: number) => {

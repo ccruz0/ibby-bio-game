@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { progressStorageKey } from "../player/scoreboard";
 import type { PlayerProgress } from "../types";
 
 interface GameContextValue {
@@ -21,6 +22,19 @@ export function emptyProgress(episodeId: string): PlayerProgress {
 
 export function GameProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState<PlayerProgress | null>(null);
+
+  // Persist here, not in useProgress: confirming a battle records the score and
+  // navigates away in the same handler, so the battle component unmounts before
+  // its own effect could save. The provider outlives every scene, so this write
+  // always happens — without it the score never survives leaving the screen.
+  useEffect(() => {
+    if (!progress?.episode) return;
+    try {
+      localStorage.setItem(progressStorageKey(progress.episode), JSON.stringify(progress));
+    } catch {
+      // Blocked storage must never interrupt play.
+    }
+  }, [progress]);
 
   const recordScore = (episodeId: string, battleId: string, score: number, totalBattles: number) => {
     setProgress((prev) => {

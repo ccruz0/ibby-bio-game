@@ -12,7 +12,7 @@ describe("Setup → Battle 1 navigation", () => {
     const user = userEvent.setup();
     render(<App />);
 
-    expect(screen.getByText(/The Water Strider Mystery/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /The Water Strider Mystery/i })).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /Start the investigation/i }));
 

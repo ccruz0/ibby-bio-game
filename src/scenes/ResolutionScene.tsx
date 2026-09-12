@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import Scoreboard from "../components/Scoreboard";
 import { getEpisode } from "../episodes/registry";
 import { useProgress } from "../hooks/useProgress";
 
@@ -37,6 +38,7 @@ export default function ResolutionScene() {
         </span>
         <span className="ibby-chip">Score: {progress?.overall_score ?? 0}%</span>
       </div>
+      <Scoreboard highlightEpisodeId={episode.id} />
     </div>
   );
 }
