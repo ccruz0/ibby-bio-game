@@ -1,0 +1,24 @@
+import type { EpisodeConfig } from "./types";
+
+const foodWebSvg = `<svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg"><circle cx="120" cy="30" r="15" fill="#90ee90" stroke="#333" stroke-width="2"/><text x="120" y="35" text-anchor="middle" font-size="10" font-weight="bold">Sun</text><circle cx="60" cy="90" r="15" fill="#90ee90" stroke="#333" stroke-width="2"/><text x="60" y="95" text-anchor="middle" font-size="9">Plant</text><circle cx="180" cy="90" r="15" fill="#90ee90" stroke="#333" stroke-width="2"/><text x="180" y="95" text-anchor="middle" font-size="9">Algae</text><circle cx="40" cy="150" r="15" fill="#ff9999" stroke="#333" stroke-width="2"/><text x="40" y="155" text-anchor="middle" font-size="8">Herbiv</text><circle cx="120" cy="150" r="15" fill="#ff6b6b" stroke="#333" stroke-width="2"/><text x="120" y="155" text-anchor="middle" font-size="8">Carnivor</text><line x1="120" y1="45" x2="60" y2="75" stroke="#333" stroke-width="1"/><line x1="120" y1="45" x2="180" y2="75" stroke="#333" stroke-width="1"/><line x1="60" y1="105" x2="40" y2="135" stroke="#333" stroke-width="1"/><line x1="180" y1="105" x2="120" y2="135" stroke="#333" stroke-width="1"/><line x1="120" y1="45" x2="120" y2="30" stroke="#ffd700" stroke-width="2" stroke-dasharray="3,3"/></svg>`;
+
+const ECOLOGY_MATCH_ANSWER_KEY = [
+  { id: "e1", fromId: "producer", toId: "plant" },
+  { id: "e2", fromId: "consumer", toId: "herbivore" },
+  { id: "e3", fromId: "decomposer", toId: "bacteria" },
+  { id: "e4", fromId: "biotic", toId: "living" },
+];
+
+export const mystery4Ecology: EpisodeConfig = {
+  id: "mystery-4-ecology",
+  title: "The Web of Life",
+  tier: "flagship",
+  setup: { heading: "Ecosystem Connections", body: "Trees, insects, birds, fungi, and bacteria are connected. Energy flows through the web. Matter cycles endlessly. Trace the connections.", diagramSvg: foodWebSvg, cta: "Map the food web →" },
+  battles: [
+    { type: "match", id: "battle_1", heading: "Evidence 1", intro: "Match organism roles in ecosystems", setupCta: "Match →", setupDiagramSvg: foodWebSvg, viewBox: { width: 300, height: 200 }, diagramDescription: "Ecosystem roles", nodes: [{ id: "producer", x: 60, y: 40, label: "Prod", accessibleLabel: "Producer" }, { id: "consumer", x: 60, y: 80, label: "Cons", accessibleLabel: "Consumer" }, { id: "decomposer", x: 60, y: 120, label: "Decomp", accessibleLabel: "Decomposer" }, { id: "biotic", x: 60, y: 160, label: "Biotic", accessibleLabel: "Biotic" }, { id: "plant", x: 240, y: 40, label: "🌱", accessibleLabel: "Makes food from sun" }, { id: "herbivore", x: 240, y: 80, label: "🦌", accessibleLabel: "Eats plants" }, { id: "bacteria", x: 240, y: 120, label: "🔄", accessibleLabel: "Breaks down dead" }, { id: "living", x: 240, y: 160, label: "⚡", accessibleLabel: "Living organism" }], answerKey: ECOLOGY_MATCH_ANSWER_KEY, teachBack: "Producers make food. Consumers eat others. Decomposers recycle. Biotic = living.", wrongHint: "Not quite", finalWrongHint: "Hint: Producer=plant, Consumer=eat, Decomposer=break down, Biotic=living" },
+    { type: "scenario", id: "battle_2", heading: "Evidence 2", intro: "Energy flow through levels", setupCta: "Choose →", setupDiagramSvg: foodWebSvg, quizDiagramSvg: foodWebSvg, question: "When energy passes to the next feeding level, about what fraction remains?", options: [{ id: "opt1", text: "10% (the 10% rule)", correct: true }, { id: "opt2", text: "50%", correct: false }, { id: "opt3", text: "90%", correct: false }, { id: "opt4", text: "100%", correct: false }], teachBack: "Only 10% of energy reaches the next level. 90% is used or lost.", wrongHint: "Not quite", finalWrongHint: "Hint: Review the question carefully" },
+    { type: "scenario", id: "battle_3", heading: "Evidence 3", intro: "Nutrient cycles", setupCta: "Answer →", setupDiagramSvg: foodWebSvg, quizDiagramSvg: foodWebSvg, question: "Which process captures CO2 from air into living things?", options: [{ id: "opt1", text: "Photosynthesis", correct: true }, { id: "opt2", text: "Respiration", correct: false }, { id: "opt3", text: "Decomposition", correct: false }, { id: "opt4", text: "Nitrogen fixation", correct: false }], teachBack: "Photosynthesis captures CO2 and makes glucose.", wrongHint: "Not quite", finalWrongHint: "Hint: Review the question carefully" }
+  ],
+  bridges: { battle_1: { id: "1", title: "Ecosystem roles", evidence: "Structure", body: "Producers, consumers, and decomposers are essential", diagramSvg: foodWebSvg, diagramLabel: "Roles", cta: "Energy flow →" }, battle_2: { id: "2", title: "Energy loss", evidence: "10% rule", body: "Only 10% reaches each level. Explains predator populations.", diagramSvg: foodWebSvg, diagramLabel: "Energy pyramid", cta: "Nutrients →" } },
+  resolution: { heading: "Web Revealed!", body: "Ecosystems are networks where energy flows and nutrients cycle. All parts are essential.", diagramSvg: foodWebSvg }
+};
