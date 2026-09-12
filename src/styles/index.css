@@ -509,3 +509,20 @@ body {
     width: 100%;
   }
 }
+
+/* Salida de la pantalla final: sin esto, resolver un episodio dejaba al jugador atrapado. */
+.ibby-next-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.ibby-btn.is-secondary {
+  font-size: 0.95rem;
+  border-style: dashed;
+  border-width: 2px;
+  box-shadow: none;
+  opacity: 0.85;
+}
