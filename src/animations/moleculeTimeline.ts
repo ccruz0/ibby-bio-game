@@ -32,7 +32,15 @@ export function playMoleculeReveal(container: HTMLElement | SVGElement): () => v
   return () => ctx.revert();
 }
 
-// jsdom (unit tests) doesn't implement SVG geometry methods; fall back to 0 there.
+// jsdom (unit tests) doesn't implement SVG geometry methods, and a real browser throws
+// "non-rendered element" when the line is detached or hidden — which happens during
+// gsap.context().revert() on unmount, i.e. every time the player navigates away.
+// Either way, 0 is a safe length: the line simply appears without the draw-on effect.
 function bondLineLength(_i: number, target: SVGLineElement): number {
-  return typeof target.getTotalLength === "function" ? target.getTotalLength() : 0;
+  try {
+    if (typeof target.getTotalLength !== "function" || !target.isConnected) return 0;
+    return target.getTotalLength();
+  } catch {
+    return 0;
+  }
 }
