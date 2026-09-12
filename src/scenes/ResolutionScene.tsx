@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import Scoreboard from "../components/Scoreboard";
-import { getEpisode } from "../episodes/registry";
+import { episodeSetupPath } from "../episodes/navigation";
+import { episodeList, getEpisode } from "../episodes/registry";
 import { useProgress } from "../hooks/useProgress";
 
 export default function ResolutionScene() {
@@ -16,6 +17,11 @@ export default function ResolutionScene() {
   }, [episode]);
 
   if (!episode) return <Navigate to="/" replace />;
+
+  // The resolution used to be a dead end: no way onward, so finishing an episode
+  // trapped the player. Offer the next episode and always a way back to the hub.
+  const currentIndex = episodeList.findIndex((e) => e.id === episode.id);
+  const nextEpisode = currentIndex >= 0 ? episodeList[currentIndex + 1] : undefined;
 
   const totalBattles = episode.battles.length;
   const completedCount = progress
@@ -38,6 +44,17 @@ export default function ResolutionScene() {
         </span>
         <span className="ibby-chip">Score: {progress?.overall_score ?? 0}%</span>
       </div>
+      <nav className="ibby-next-steps" aria-label="What next">
+        {nextEpisode && (
+          <Link className="ibby-btn" to={episodeSetupPath(nextEpisode.id)}>
+            Next mystery: {nextEpisode.title} →
+          </Link>
+        )}
+        <Link className="ibby-btn is-secondary" to="/episodes">
+          Back to the notebook
+        </Link>
+      </nav>
+
       <Scoreboard highlightEpisodeId={episode.id} />
     </div>
   );
