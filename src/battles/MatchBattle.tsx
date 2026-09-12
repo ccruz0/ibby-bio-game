@@ -16,10 +16,33 @@ export default function MatchBattle({ episode, battle }: { episode: EpisodeConfi
   const [announcement, setAnnouncement] = useState("");
 
   const correctPairsFound = useMemo(() => drawnPairs.filter((p) => p.correct).length, [drawnPairs]);
-  const pairedIds = useMemo(
-    () => new Set(drawnPairs.filter((p) => p.correct).flatMap((p) => [p.fromId, p.toId])),
-    [drawnPairs]
-  );
+  // How many correct pairs each node belongs to. A node can appear in more than one
+  // (Water A1.1: the middle molecule bonds to both neighbours), so it must stay
+  // usable until all of its pairs are found — otherwise a keyboard-only player is
+  // locked out of the second bond.
+  const requiredPerNode = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const pair of battle.answerKey) {
+      counts.set(pair.fromId, (counts.get(pair.fromId) ?? 0) + 1);
+      counts.set(pair.toId, (counts.get(pair.toId) ?? 0) + 1);
+    }
+    return counts;
+  }, [battle.answerKey]);
+
+  const foundPerNode = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const pair of drawnPairs) {
+      if (!pair.correct) continue;
+      counts.set(pair.fromId, (counts.get(pair.fromId) ?? 0) + 1);
+      counts.set(pair.toId, (counts.get(pair.toId) ?? 0) + 1);
+    }
+    return counts;
+  }, [drawnPairs]);
+
+  function isNodeFinished(id: string): boolean {
+    const required = requiredPerNode.get(id) ?? 0;
+    return required > 0 && (foundPerNode.get(id) ?? 0) >= required;
+  }
   const done = correctPairsFound >= battle.answerKey.length;
 
   function nameOf(id: string) {
@@ -27,7 +50,7 @@ export default function MatchBattle({ episode, battle }: { episode: EpisodeConfi
   }
 
   function handleClickNode(id: string) {
-    if (done) return;
+    if (done || isNodeFinished(id)) return;
     if (!selected) {
       setSelected(id);
       setAnnouncement(`${nameOf(id)} selected. Now choose what it pairs with.`);
@@ -142,14 +165,14 @@ export default function MatchBattle({ episode, battle }: { episode: EpisodeConfi
               key={n.id}
               type="button"
               className={`ibby-chip-btn${selected === n.id ? " is-picked" : ""}${
-                pairedIds.has(n.id) ? " is-correct" : ""
+                isNodeFinished(n.id) ? " is-correct" : ""
               }`}
               aria-pressed={selected === n.id}
-              disabled={done || pairedIds.has(n.id)}
+              disabled={done || isNodeFinished(n.id)}
               onClick={() => handleClickNode(n.id)}
             >
               {n.accessibleLabel}
-              {pairedIds.has(n.id) ? " ✓ paired" : ""}
+              {isNodeFinished(n.id) ? " ✓ paired" : ""}
             </button>
           ))}
         </div>

@@ -1,5 +1,6 @@
+import { useGame } from "../context/GameContext";
 import { getPlayer } from "../player/player";
-import { averageScore, countFinished, readScoreboard } from "../player/scoreboard";
+import { averageScore, countFinished, readScoreboard, summariseEpisode } from "../player/scoreboard";
 
 /**
  * The full score card: every episode, how far the player got and what she
@@ -10,7 +11,14 @@ import { averageScore, countFinished, readScoreboard } from "../player/scoreboar
  */
 export default function Scoreboard({ highlightEpisodeId }: { highlightEpisodeId?: string }) {
   const player = getPlayer();
-  const scores = readScoreboard();
+  const { progress } = useGame();
+
+  // Saved storage alone is not enough: confirming the last battle records the score
+  // and navigates in the same handler, so this card can paint before the provider
+  // has written to localStorage. The in-session progress is the fresher source.
+  const scores = readScoreboard().map((saved) =>
+    progress && progress.episode === saved.id ? summariseEpisode(saved.id, progress) ?? saved : saved
+  );
   const finished = countFinished(scores);
   const average = averageScore(scores);
   const anyStarted = scores.some((s) => s.started);

@@ -79,6 +79,24 @@ describe("keyboard-only play", () => {
     expect(screen.getByRole("button", { name: /Confirm evidence/i })).toBeEnabled();
   });
 
+  it("completes a match battle where one node belongs to two pairs, with the keyboard alone", async () => {
+    // Water A1.1 Evidence 2: the middle molecule bonds to BOTH neighbours, so a
+    // node that is already part of a correct pair must stay usable.
+    window.history.pushState({}, "", "/e/water-a1.1/battle/battle_2");
+    render(<App />);
+    await pressEnterOn(/Draw the bonds/i);
+
+    await pressEnterOn("left water molecule");
+    await pressEnterOn("middle water molecule");
+    expect(screen.getByRole("status", { name: /move announcements/i })).toHaveTextContent(/Correct/i);
+
+    await pressEnterOn("middle water molecule");
+    await pressEnterOn("right water molecule");
+    expect(screen.getByRole("status", { name: /move announcements/i })).toHaveTextContent(/Correct/i);
+
+    expect(screen.getByRole("button", { name: /Confirm evidence/i })).toBeEnabled();
+  });
+
   it("reaches a label button by tabbing, without any pointer event", async () => {
     const user = userEvent.setup();
     window.history.pushState({}, "", "/e/water-a1.1/battle/battle_1");
