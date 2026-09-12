@@ -254,3 +254,123 @@ body {
 .ibby-battle-setup .ibby-bridge-diagram {
   max-width: 640px;
 }
+
+/* ---------------------------------------------------------------------------
+   Keyboard / no-drag path for the label and match battles.
+   Same notebook look as the rest; these are real <button>s so they work with
+   Tab, Enter, Space and screen readers. State is never colour-only.
+   --------------------------------------------------------------------------- */
+
+.ibby-keyboard-path {
+  margin: 1.25rem auto 0;
+  max-width: 34rem;
+  padding: 0.9rem 1rem 1rem;
+  border: 2.5px dashed color-mix(in srgb, var(--ibby-ink) 45%, var(--ibby-grid));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ibby-cream) 85%, white);
+}
+
+.ibby-keyboard-path-title {
+  margin: 0 0 0.15rem;
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--ibby-heading-purple);
+}
+
+.ibby-keyboard-path-hint {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.ibby-keyboard-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.ibby-keyboard-caption {
+  margin: 0.7rem 0 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.ibby-keyboard-caption:first-of-type {
+  margin-top: 0;
+}
+
+.ibby-chip-btn,
+.ibby-zone-btn {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  padding: 0.35rem 0.85rem;
+  color: var(--ibby-ink);
+  background: var(--ibby-cream);
+  border: 2.5px solid var(--ibby-ink);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.ibby-zone-btn {
+  border-radius: 8px;
+  border-style: dashed;
+}
+
+.ibby-chip-btn:hover:not(:disabled),
+.ibby-zone-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ibby-water-blue) 25%, var(--ibby-cream));
+}
+
+/* Visible focus is the whole point here — never remove it. */
+.ibby-chip-btn:focus-visible,
+.ibby-zone-btn:focus-visible {
+  outline: 3px solid var(--ibby-heading-purple);
+  outline-offset: 3px;
+}
+
+/* Picked up: thicker dashed ring plus a leading arrow, so it does not rely on colour. */
+.ibby-chip-btn.is-picked {
+  border-style: dashed;
+  border-width: 4px;
+  background: color-mix(in srgb, var(--ibby-hydrogen-yellow) 40%, var(--ibby-cream));
+}
+
+.ibby-chip-btn.is-picked::before {
+  content: "→ ";
+}
+
+.ibby-chip-btn.is-correct {
+  background: color-mix(in srgb, var(--ibby-water-blue) 45%, var(--ibby-cream));
+}
+
+.ibby-chip-btn.is-wrong {
+  border-color: var(--ibby-keyword-red);
+}
+
+.ibby-chip-btn:disabled,
+.ibby-zone-btn:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.ibby-sr-status {
+  margin: 0.75rem auto 0;
+  max-width: 34rem;
+  min-height: 1.2em;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ibby-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ibby-chip-btn,
+  .ibby-zone-btn {
+    transition: none;
+  }
+}

@@ -8,12 +8,12 @@ import type { EpisodeConfig } from "./types";
 // Label zones for eukaryotic cell diagram (drag-label battle).
 // Coordinates match src/diagrams/eukaryotic-cell.svg viewBox (500x400).
 const EUKARYOTIC_LABEL_ZONES = [
-  { id: "dropzone_nucleus", label: "nucleus", x: 250, y: 140, toleranceRatio: 0.15 },
-  { id: "dropzone_mitochondria", label: "mitochondria", x: 150, y: 280, toleranceRatio: 0.12 },
-  { id: "dropzone_er", label: "endoplasmic\nreticulum", x: 140, y: 200, toleranceRatio: 0.12 },
-  { id: "dropzone_golgi", label: "Golgi\napparatus", x: 250, y: 320, toleranceRatio: 0.12 },
-  { id: "dropzone_ribosome", label: "ribosome", x: 310, y: 170, toleranceRatio: 0.1 },
-  { id: "dropzone_membrane", label: "cell\nmembrane", x: 250, y: 50, toleranceRatio: 0.12 },
+  { id: "dropzone_nucleus", label: "nucleus", accessibleLabel: "nucleus", x: 250, y: 140, toleranceRatio: 0.15 },
+  { id: "dropzone_mitochondria", label: "mitochondria", accessibleLabel: "mitochondria", x: 150, y: 280, toleranceRatio: 0.12 },
+  { id: "dropzone_er", label: "endoplasmic\nreticulum", accessibleLabel: "endoplasmic reticulum", x: 140, y: 200, toleranceRatio: 0.12 },
+  { id: "dropzone_golgi", label: "Golgi\napparatus", accessibleLabel: "Golgi apparatus", x: 250, y: 320, toleranceRatio: 0.12 },
+  { id: "dropzone_ribosome", label: "ribosome", accessibleLabel: "ribosome", x: 310, y: 170, toleranceRatio: 0.1 },
+  { id: "dropzone_membrane", label: "cell\nmembrane", accessibleLabel: "cell membrane", x: 250, y: 50, toleranceRatio: 0.12 },
 ];
 
 // Match answer key for prokaryote vs eukaryote comparison.
@@ -53,6 +53,8 @@ export const cellStructureA22: EpisodeConfig = {
       setupDiagramSvg: EukaryoticCellSvg,
       diagramSvg: EukaryoticCellSvg,
       diagramSize: 500,
+      diagramDescription:
+        "Hand-drawn eukaryotic cell in cross-section, with six unlabelled structures inside its outer boundary.",
       zones: EUKARYOTIC_LABEL_ZONES,
       startPositions: {
         dropzone_nucleus: { x: 50, y: 50 },
@@ -85,13 +87,15 @@ export const cellStructureA22: EpisodeConfig = {
       setupCta: "Draw the matches →",
       setupDiagramSvg: CellComparisonSvg,
       viewBox: { width: 700, height: 300 },
+      diagramDescription:
+        "Hand-drawn comparison: three prokaryote features listed on the left, three eukaryote features on the right.",
       nodes: [
-        { id: "node_nucleoid", x: 100, y: 80, label: "Nucleoid\n(DNA region)" },
-        { id: "node_70s_ribosome", x: 100, y: 140, label: "70S Ribosomes" },
-        { id: "node_cell_wall_prokaryote", x: 100, y: 200, label: "Cell Wall" },
-        { id: "node_nucleus", x: 600, y: 80, label: "Nucleus\n(DNA compartment)" },
-        { id: "node_80s_ribosome", x: 600, y: 140, label: "80S Ribosomes" },
-        { id: "node_membrane_bound_organelles", x: 600, y: 200, label: "Membrane-bound\nOrganelles" },
+        { id: "node_nucleoid", x: 100, y: 80, label: "Nucleoid\n(DNA region)", accessibleLabel: "prokaryote nucleoid, the DNA region" },
+        { id: "node_70s_ribosome", x: 100, y: 140, label: "70S Ribosomes", accessibleLabel: "prokaryote 70S ribosomes" },
+        { id: "node_cell_wall_prokaryote", x: 100, y: 200, label: "Cell Wall", accessibleLabel: "prokaryote cell wall" },
+        { id: "node_nucleus", x: 600, y: 80, label: "Nucleus\n(DNA compartment)", accessibleLabel: "eukaryote nucleus, the DNA compartment" },
+        { id: "node_80s_ribosome", x: 600, y: 140, label: "80S Ribosomes", accessibleLabel: "eukaryote 80S ribosomes" },
+        { id: "node_membrane_bound_organelles", x: 600, y: 200, label: "Membrane-bound\nOrganelles", accessibleLabel: "eukaryote membrane-bound organelles" },
       ],
       answerKey: PROKARYOTE_EUKARYOTE_MATCHES,
       teachBack:

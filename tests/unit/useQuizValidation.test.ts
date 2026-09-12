@@ -7,7 +7,7 @@ import {
 } from "../../src/hooks/useQuizValidation";
 
 describe("isWithinDragZone", () => {
-  const zone = { id: "z1", label: "O", x: 200, y: 150, toleranceRatio: 0.1 };
+  const zone = { id: "z1", label: "O", accessibleLabel: "oxygen atom", x: 200, y: 150, toleranceRatio: 0.1 };
 
   it("accepts a drop exactly on the zone", () => {
     expect(isWithinDragZone(zone, { x: 200, y: 150 }, 400)).toBe(true);

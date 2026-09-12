@@ -18,6 +18,8 @@ export interface LabelBattleConfig extends BattleBase {
   type: "drag-label";
   setupDiagramSvg: string;
   diagramSvg: string;
+  /** Spoken description of the diagram for screen readers. Required. */
+  diagramDescription: string;
   diagramSize: number; // viewBox width; height is diagramSize * 0.75
   zones: DragLabelZone[];
   startPositions: Record<string, { x: number; y: number }>;
@@ -27,8 +29,11 @@ export interface LabelBattleConfig extends BattleBase {
 export interface MatchBattleConfig extends BattleBase {
   type: "match";
   setupDiagramSvg: string;
+  /** Spoken description of the diagram for screen readers. Required. */
+  diagramDescription: string;
   viewBox: { width: number; height: number };
-  nodes: { id: string; x: number; y: number; label: string }[];
+  /** `accessibleLabel` is the spoken name; `label` is the short glyph drawn in the SVG. */
+  nodes: { id: string; x: number; y: number; label: string; accessibleLabel: string }[];
   answerKey: MatchPair[];
 }
 

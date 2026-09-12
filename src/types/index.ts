@@ -21,10 +21,15 @@ export interface PlayerProgress {
 
 export interface DragLabelZone {
   id: string;
-  label: string; // e.g. "O", "H"
+  label: string; // short glyph drawn in the diagram, e.g. "O", "H"
+  /**
+   * Spoken name for screen readers and the keyboard path, e.g. "oxygen atom".
+   * Required on purpose: a new episode cannot ship without it.
+   */
+  accessibleLabel: string;
   x: number;
   y: number;
-  toleranceRatio: number; // e.g. 0.1 = 10%
+  toleranceRatio: number; // e.g. 0.1 = 10% — pointer dragging only; the keyboard path is exact
 }
 
 export interface MatchPair {

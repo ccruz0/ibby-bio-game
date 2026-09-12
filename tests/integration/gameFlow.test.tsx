@@ -5,7 +5,7 @@ import App from "../../src/App";
 
 describe("Setup → Battle 1 navigation", () => {
   beforeEach(() => {
-    window.history.pushState({}, "", "/");
+    window.history.pushState({}, "", "/e/water-a1.1/setup");
   });
 
   it("loads the setup scene and advances into the first battle setup", async () => {
@@ -27,6 +27,6 @@ describe("Setup → Battle 1 navigation", () => {
     await user.click(screen.getByRole("button", { name: /Start the investigation/i }));
     await user.click(await screen.findByRole("button", { name: /Label the atoms/i }));
 
-    expect(screen.getByText(/Drag each label onto the matching atom/i)).toBeInTheDocument();
+    expect(screen.getByText(/Drag each label onto the matching part of the diagram/i)).toBeInTheDocument();
   });
 });
