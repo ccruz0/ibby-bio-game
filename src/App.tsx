@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
+import ScoreBar from "./components/ScoreBar";
 import { GameProvider } from "./context/GameContext";
 import EpisodeBattleScene from "./scenes/EpisodeBattleScene";
 import EpisodeHome from "./scenes/EpisodeHome";
@@ -24,6 +25,7 @@ export default function App() {
   return (
     <GameProvider>
       <BrowserRouter>
+        <ScoreBar />
         <Routes>
           <Route path="/episodes" element={<EpisodeHome />} />
           <Route path="/e/:episodeId/setup" element={<SetupScene />} />

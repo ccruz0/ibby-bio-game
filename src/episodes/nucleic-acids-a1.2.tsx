@@ -9,9 +9,9 @@ import type { EpisodeConfig } from "./types";
 
 // Coordinates match src/diagrams/nucleotide.svg's #nucleotide_1_dropzones (viewBox 400x300).
 const LABEL_ZONES = [
-  { id: "dropzone_p", label: "P", x: 110, y: 90, toleranceRatio: 0.1 },
-  { id: "dropzone_s", label: "S", x: 200, y: 170, toleranceRatio: 0.1 },
-  { id: "dropzone_b", label: "B", x: 300, y: 170, toleranceRatio: 0.1 },
+  { id: "dropzone_p", label: "P", accessibleLabel: "phosphate group", x: 110, y: 90, toleranceRatio: 0.1 },
+  { id: "dropzone_s", label: "S", accessibleLabel: "sugar", x: 200, y: 170, toleranceRatio: 0.1 },
+  { id: "dropzone_b", label: "B", accessibleLabel: "nitrogenous base", x: 300, y: 170, toleranceRatio: 0.1 },
 ];
 
 // Correct complementary base pairs per IB A1.2.6: A-T (2 H-bonds) and G-C (3 H-bonds).
@@ -49,6 +49,8 @@ export const nucleicAcidsA12: EpisodeConfig = {
       setupDiagramSvg: NucleotideSvg,
       diagramSvg: NucleotideSvg,
       diagramSize: 400,
+      diagramDescription:
+        "Hand-drawn nucleotide: three linked parts — one at the top left, one in the middle, one to its right.",
       zones: LABEL_ZONES,
       startPositions: {
         dropzone_p: { x: 60, y: 40 },
@@ -78,11 +80,13 @@ export const nucleicAcidsA12: EpisodeConfig = {
       setupCta: "Draw the bonds →",
       setupDiagramSvg: BasepairSvg,
       viewBox: { width: 560, height: 220 },
+      diagramDescription:
+        "Four hand-drawn DNA bases in a row: adenine, thymine, guanine and cytosine.",
       nodes: [
-        { id: "mol_a", x: 80, y: 110, label: "A" },
-        { id: "mol_t", x: 220, y: 110, label: "T" },
-        { id: "mol_g", x: 340, y: 110, label: "G" },
-        { id: "mol_c", x: 480, y: 110, label: "C" },
+        { id: "mol_a", x: 80, y: 110, label: "A", accessibleLabel: "adenine" },
+        { id: "mol_t", x: 220, y: 110, label: "T", accessibleLabel: "thymine" },
+        { id: "mol_g", x: 340, y: 110, label: "G", accessibleLabel: "guanine" },
+        { id: "mol_c", x: 480, y: 110, label: "C", accessibleLabel: "cytosine" },
       ],
       answerKey: MATCH_ANSWER_KEY,
       teachBack:

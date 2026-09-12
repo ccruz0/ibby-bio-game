@@ -13,7 +13,7 @@ describe("Nucleic Acids A1.2 flagship episode", () => {
     window.history.pushState({}, "", "/e/nucleic-acids-a1.2/setup");
     render(<App />);
 
-    expect(screen.getByText(/The Perfect Copy Mystery/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /The Perfect Copy Mystery/i })).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /Start the investigation/i }));
 

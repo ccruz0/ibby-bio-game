@@ -9,9 +9,9 @@ import type { EpisodeConfig } from "./types";
 
 // Coordinates match src/diagrams/molecule.svg's #molecule_1_dropzones (viewBox 400x300).
 const LABEL_ZONES = [
-  { id: "dropzone_o", label: "O", x: 200, y: 150, toleranceRatio: 0.1 },
-  { id: "dropzone_h1", label: "H", x: 130, y: 220, toleranceRatio: 0.1 },
-  { id: "dropzone_h2", label: "H", x: 270, y: 220, toleranceRatio: 0.1 },
+  { id: "dropzone_o", label: "O", accessibleLabel: "oxygen atom", x: 200, y: 150, toleranceRatio: 0.1 },
+  { id: "dropzone_h1", label: "H", accessibleLabel: "left hydrogen atom", x: 130, y: 220, toleranceRatio: 0.1 },
+  { id: "dropzone_h2", label: "H", accessibleLabel: "right hydrogen atom", x: 270, y: 220, toleranceRatio: 0.1 },
 ];
 
 // Correct hydrogen-bond pairs per biology-notes-03.png: A-B and B-C bond, A-C does not.
@@ -48,6 +48,8 @@ export const waterA11: EpisodeConfig = {
       setupDiagramSvg: MoleculeSvg,
       diagramSvg: MoleculeSvg,
       diagramSize: 400,
+      diagramDescription:
+        "Hand-drawn water molecule: one large central atom with two smaller atoms attached below it, left and right.",
       zones: LABEL_ZONES,
       startPositions: {
         dropzone_o: { x: 60, y: 40 },
@@ -76,10 +78,12 @@ export const waterA11: EpisodeConfig = {
       setupCta: "Draw the bonds →",
       setupDiagramSvg: HbondSvg,
       viewBox: { width: 500, height: 260 },
+      diagramDescription:
+        "Three hand-drawn water molecules: one on the left, one lower in the middle, one on the right, with dashed attractions between neighbours.",
       nodes: [
-        { id: "mol_a", x: 90, y: 70, label: "O" },
-        { id: "mol_b", x: 250, y: 160, label: "O" },
-        { id: "mol_c", x: 410, y: 70, label: "O" },
+        { id: "mol_a", x: 90, y: 70, label: "O", accessibleLabel: "left water molecule" },
+        { id: "mol_b", x: 250, y: 160, label: "O", accessibleLabel: "middle water molecule" },
+        { id: "mol_c", x: 410, y: 70, label: "O", accessibleLabel: "right water molecule" },
       ],
       answerKey: MATCH_ANSWER_KEY,
       teachBack:

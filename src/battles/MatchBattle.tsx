@@ -13,26 +13,49 @@ export default function MatchBattle({ episode, battle }: { episode: EpisodeConfi
   const [drawnPairs, setDrawnPairs] = useState<{ fromId: string; toId: string; correct: boolean }[]>([]);
   const [attempts, setAttempts] = useState(0);
   const [hint, setHint] = useState<string | null>(null);
+  const [announcement, setAnnouncement] = useState("");
 
   const correctPairsFound = useMemo(() => drawnPairs.filter((p) => p.correct).length, [drawnPairs]);
+  const pairedIds = useMemo(
+    () => new Set(drawnPairs.filter((p) => p.correct).flatMap((p) => [p.fromId, p.toId])),
+    [drawnPairs]
+  );
   const done = correctPairsFound >= battle.answerKey.length;
+
+  function nameOf(id: string) {
+    return battle.nodes.find((n) => n.id === id)!.accessibleLabel;
+  }
 
   function handleClickNode(id: string) {
     if (done) return;
     if (!selected) {
       setSelected(id);
+      setAnnouncement(`${nameOf(id)} selected. Now choose what it pairs with.`);
       return;
     }
     if (selected === id) {
       setSelected(null);
+      setAnnouncement(`${nameOf(id)} unselected.`);
       return;
     }
 
     const correct = isCorrectMatch({ fromId: selected, toId: id }, battle.answerKey);
     setDrawnPairs((prev) => [...prev, { fromId: selected, toId: id, correct }]);
     setAttempts((a) => a + 1);
+    setAnnouncement(
+      correct
+        ? `Correct. ${nameOf(selected)} pairs with ${nameOf(id)}.`
+        : `Not quite. ${nameOf(selected)} does not pair with ${nameOf(id)}. Try another pair.`
+    );
     setSelected(null);
     setHint(correct ? null : attempts + 1 >= 3 ? battle.finalWrongHint : battle.wrongHint);
+  }
+
+  function onKeyDownStage(e: React.KeyboardEvent) {
+    if (e.key === "Escape" && selected) {
+      setAnnouncement(`${nameOf(selected)} unselected.`);
+      setSelected(null);
+    }
   }
 
   function handleSubmit() {
@@ -59,14 +82,19 @@ export default function MatchBattle({ episode, battle }: { episode: EpisodeConfi
   }
 
   return (
-    <div className="scene">
+    <div className="scene" onKeyDown={onKeyDownStage}>
       <h1 className="ibby-heading">{battle.heading}</h1>
-      <p>Click two molecules to draw a hydrogen bond between them (dashed line, not solid).</p>
+      <p>
+        Pick two items to join them with a bond — click them in the diagram, or use the buttons below, which work
+        with a keyboard.
+      </p>
 
       <svg
         viewBox={`0 0 ${battle.viewBox.width} ${battle.viewBox.height}`}
         className="battle-stage"
         style={{ maxHeight: battle.viewBox.height }}
+        role="img"
+        aria-label={battle.diagramDescription}
       >
         {drawnPairs.map((p, i) => {
           const from = battle.nodes.find((n) => n.id === p.fromId)!;
@@ -81,6 +109,7 @@ export default function MatchBattle({ episode, battle }: { episode: EpisodeConfi
               stroke={p.correct ? "#2c3e50" : "#e74c3c"}
               strokeWidth={2}
               strokeDasharray="6 6"
+              aria-hidden="true"
             />
           );
         })}
@@ -101,6 +130,34 @@ export default function MatchBattle({ episode, battle }: { episode: EpisodeConfi
           </g>
         ))}
       </svg>
+
+      <div className="ibby-keyboard-path">
+        <h2 className="ibby-keyboard-path-title">Make the pairs</h2>
+        <p className="ibby-keyboard-path-hint">
+          Choose one item, then choose the item it pairs with. Press Escape to unselect.
+        </p>
+        <div className="ibby-keyboard-row" role="group" aria-label="Items to pair">
+          {battle.nodes.map((n) => (
+            <button
+              key={n.id}
+              type="button"
+              className={`ibby-chip-btn${selected === n.id ? " is-picked" : ""}${
+                pairedIds.has(n.id) ? " is-correct" : ""
+              }`}
+              aria-pressed={selected === n.id}
+              disabled={done || pairedIds.has(n.id)}
+              onClick={() => handleClickNode(n.id)}
+            >
+              {n.accessibleLabel}
+              {pairedIds.has(n.id) ? " ✓ paired" : ""}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <p className="ibby-sr-status" role="status" aria-live="polite" aria-label="Move announcements">
+        {announcement}
+      </p>
 
       {hint && (
         <p className="ibby-feedback is-wrong" data-tone="wrong" role="status">

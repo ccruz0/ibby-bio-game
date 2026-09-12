@@ -13,7 +13,7 @@ describe("Cell Structure A2.2 flagship episode", () => {
     window.history.pushState({}, "", "/e/cell-structure-a2.2/setup");
     render(<App />);
 
-    expect(screen.getByText(/What's Inside the Box\?/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /What's Inside the Box\?/i })).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /Enter the cell/i }));
 
@@ -29,16 +29,16 @@ describe("Cell Structure A2.2 flagship episode", () => {
     await user.click(screen.getByRole("button", { name: /Draw the matches/i }));
 
     // Match nucleoid to nucleus
-    await user.click(screen.getByText(/Nucleoid/i));
-    await user.click(screen.getByText(/Nucleus/i));
+    await user.click(screen.getByRole("button", { name: /prokaryote nucleoid/i }));
+    await user.click(screen.getByRole("button", { name: /eukaryote nucleus/i }));
 
     // Match 70S to 80S ribosomes
-    await user.click(screen.getByText(/70S/));
-    await user.click(screen.getByText(/80S/));
+    await user.click(screen.getByRole("button", { name: /prokaryote 70S/i }));
+    await user.click(screen.getByRole("button", { name: /eukaryote 80S/i }));
 
     // Match cell wall to membrane-bound organelles
-    await user.click(screen.getByText(/Cell Wall/i));
-    await user.click(screen.getByText(/Membrane-bound/i));
+    await user.click(screen.getByRole("button", { name: /prokaryote cell wall/i }));
+    await user.click(screen.getByRole("button", { name: /membrane-bound organelles/i }));
 
     expect(await screen.findByText(/Bonds found: 3 \/ 3/i)).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: /Confirm evidence/i }));
