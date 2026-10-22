@@ -1,0 +1,147 @@
+# Ibby Bio Game — multi-user login + per-chapter progress.
+# Deploy: see infrastructure/auth/README.md
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Ibby Bio Game auth (Cognito hosted UI) + progress API (HTTP API + Lambda + DynamoDB)
+
+Parameters:
+  SiteUrl:
+    Type: String
+    Default: https://d341sw30zcyai5.cloudfront.net
+  DomainPrefix:
+    Type: String
+    Default: ibby-bio-game-ccruz0
+
+Resources:
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: ibby-bio-game-users
+      UserPoolTier: LITE
+      UsernameAttributes: [email]
+      AutoVerifiedAttributes: [email]
+      AccountRecoverySetting:
+        RecoveryMechanisms: [{ Name: verified_email, Priority: 1 }]
+      Policies:
+        PasswordPolicy: { MinimumLength: 8, RequireLowercase: true, RequireNumbers: true, RequireUppercase: false, RequireSymbols: false }
+      AdminCreateUserConfig: { AllowAdminCreateUserOnly: false }
+
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: !Ref DomainPrefix
+      UserPoolId: !Ref UserPool
+      ManagedLoginVersion: 1
+
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: ibby-web
+      UserPoolId: !Ref UserPool
+      GenerateSecret: false
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [openid, email]
+      CallbackURLs: [!Sub "${SiteUrl}/", "http://localhost:5173/"]
+      LogoutURLs: [!Sub "${SiteUrl}/", "http://localhost:5173/"]
+      SupportedIdentityProviders: [COGNITO]
+      ExplicitAuthFlows: [ALLOW_USER_SRP_AUTH, ALLOW_USER_PASSWORD_AUTH, ALLOW_REFRESH_TOKEN_AUTH]
+      PreventUserExistenceErrors: ENABLED
+      AccessTokenValidity: 1
+      IdTokenValidity: 1
+      RefreshTokenValidity: 30
+      TokenValidityUnits: { AccessToken: hours, IdToken: hours, RefreshToken: days }
+
+  ProgressTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ibby-progress
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - { AttributeName: user, AttributeType: S }
+        - { AttributeName: chapter, AttributeType: S }
+      KeySchema:
+        - { AttributeName: user, KeyType: HASH }
+        - { AttributeName: chapter, KeyType: RANGE }
+      PointInTimeRecoverySpecification: { PointInTimeRecoveryEnabled: false }
+
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins: [!Ref SiteUrl, "http://localhost:5173"]
+        AllowMethods: [GET, PUT, OPTIONS]
+        AllowHeaders: [authorization, content-type]
+        MaxAge: 3600
+      Auth:
+        DefaultAuthorizer: Cognito
+        Authorizers:
+          Cognito:
+            IdentitySource: $request.header.Authorization
+            JwtConfiguration:
+              issuer: !Sub "https://cognito-idp.${AWS::Region}.amazonaws.com/${UserPool}"
+              audience: [!Ref UserPoolClient]
+      DefaultRouteSettings: { ThrottlingBurstLimit: 20, ThrottlingRateLimit: 10 }
+
+  ProgressFn:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: ibby-progress
+      Runtime: nodejs20.x
+      Architectures: [arm64]
+      MemorySize: 128
+      Timeout: 5
+      Handler: index.handler
+      InlineCode: |
+        const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+        const { DynamoDBDocumentClient, QueryCommand, PutCommand } = require("@aws-sdk/lib-dynamodb");
+        const db = DynamoDBDocumentClient.from(new DynamoDBClient({}));
+        const T = process.env.TABLE_NAME;
+        const res = (s, b) => ({ statusCode: s, headers: { "content-type": "application/json" }, body: JSON.stringify(b) });
+        exports.handler = async (e) => {
+          const user = e.requestContext?.authorizer?.jwt?.claims?.sub;
+          if (!user) return res(401, { error: "unauthorized" });
+          const route = e.routeKey;
+          if (route === "GET /progress") {
+            const r = await db.send(new QueryCommand({ TableName: T, KeyConditionExpression: "#u = :u", ExpressionAttributeNames: { "#u": "user" }, ExpressionAttributeValues: { ":u": user } }));
+            return res(200, { chapters: (r.Items || []).map(({ user, ...rest }) => rest) });
+          }
+          if (route === "PUT /progress/{chapter}") {
+            const chapter = decodeURIComponent(e.pathParameters?.chapter || "");
+            if (!/^[a-z0-9._-]{1,64}$/i.test(chapter)) return res(400, { error: "bad chapter" });
+            let body; try { body = JSON.parse(e.body || "{}"); } catch { return res(400, { error: "bad json" }); }
+            const data = JSON.stringify(body.progress ?? body);
+            if (data.length > 20000) return res(413, { error: "too large" });
+            const item = { user, chapter, progress: JSON.parse(data), status: body.progress?.episode_status ?? body.episode_status ?? "in_progress", score: Number(body.progress?.overall_score ?? body.overall_score ?? 0), updated_at: new Date().toISOString() };
+            await db.send(new PutCommand({ TableName: T, Item: item }));
+            const { user: _u, ...out } = item;
+            return res(200, out);
+          }
+          return res(404, { error: "not found" });
+        };
+      Environment:
+        Variables: { TABLE_NAME: !Ref ProgressTable }
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: [dynamodb:Query, dynamodb:PutItem]
+              Resource: !GetAtt ProgressTable.Arn
+      Events:
+        Get:
+          Type: HttpApi
+          Properties: { ApiId: !Ref HttpApi, Path: /progress, Method: GET }
+        Put:
+          Type: HttpApi
+          Properties: { ApiId: !Ref HttpApi, Path: "/progress/{chapter}", Method: PUT }
+
+  ProgressFnLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/ibby-progress
+      RetentionInDays: 14
+
+Outputs:
+  ApiUrl: { Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com" }
+  UserPoolId: { Value: !Ref UserPool }
+  ClientId: { Value: !Ref UserPoolClient }
+  HostedUiDomain: { Value: !Sub "https://${DomainPrefix}.auth.${AWS::Region}.amazoncognito.com" }

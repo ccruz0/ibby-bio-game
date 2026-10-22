@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from "react";
 import * as progressApi from "../api/progress";
+import * as cloud from "../api/cloudProgress";
 import { emptyProgress, useGame } from "../context/GameContext";
 import { progressStorageKey as storageKey } from "../player/scoreboard";
 
