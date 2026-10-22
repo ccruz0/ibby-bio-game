@@ -140,6 +140,30 @@ Resources:
       LogGroupName: /aws/lambda/ibby-progress
       RetentionInDays: 14
 
+  # Alarm on any ibby-progress Lambda error. Created manually on 2026-10-23 so it is live now;
+  # import it into this stack (DeletionPolicy Retain, required for import) before deploying.
+  ProgressErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      AlarmName: ibby-progress-errors
+      AlarmDescription: ibby-progress Lambda reported >= 1 error in 5 minutes
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: ibby-progress
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Sub arn:aws:sns:${AWS::Region}:${AWS::AccountId}:atp-bedrock-alerts
+
 Outputs:
   ApiUrl: { Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com" }
   UserPoolId: { Value: !Ref UserPool }
